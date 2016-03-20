@@ -1,0 +1,105 @@
+{
+    "name": "Questing - Mt. Moon to Cerulean || starting Pokecenter route 3, ending Pokecenter Cerulean",
+    "author": "g0ld",
+    "path": [
+        {
+			"condition": ["isPokemon1Usable"],
+			"actions": [
+                {
+                    "condition": ["map", "Pokecenter Route 3"],
+                    "action": ["moveToMap", "Route 3"]
+                },
+                {
+                    "condition": ["map", "Route 3"],
+                    "action": ["moveToMap", "Mt. Moon 1F"]
+                },
+                {
+                    "condition": ["all",
+                        ["map", "Mt. Moon 1F"],
+                        ["inRectangle", [20, 19], [61, 63]]],
+                    "action": ["moveToCell", [21, 20]]
+                },
+                {
+                    "condition": ["all",
+                        ["map", "Mt. Moon B1F"],
+                        ["inRectangle", [55, 14], [76, 35]]],
+                    "action": ["moveToCell", [56, 34]]
+                },
+	            {
+                    "condition": ["all",
+                        ["map", "Mt. Moon B2F"],
+                        ["inRectangle", [17, 22], [63, 70]],
+						["isNpcOnCell", [25, 29]]],
+                    "actions": [
+						{
+							"condition": ["cell", [24,31]],
+							"action": ["talkToNpcOnCell", [25, 29]]
+						},
+						{
+							"condition": ["inRectangle", [21,29], [26,30]],
+							"action": ["talkToNpcOnCell", [25, 29]]
+						},
+						{
+							"condition": ["cell", [25,31]],
+							"action": ["talkToNpcOnCell", [23, 31]]
+						},
+						{
+							"action": ["moveToCell", [25, 31]]
+						}
+					]
+                },
+	            {
+                    "condition": ["all",
+                        ["map", "Mt. Moon B2F"],
+                        ["inRectangle", [17, 22], [63, 70]],
+						["isNpcOnCell", [26, 23]]],
+                    "action": ["talkToNpcOnCell", [26, 23]]
+                },				
+                {
+                    "condition": ["all",
+                        ["map", "Mt. Moon B2F"],
+                        ["inRectangle", [17, 22], [63, 70]]],
+                    "action": ["moveToCell", [17, 27]]
+                },
+                {
+                    "condition": ["all",
+                    ["map", "Mt. Moon B1F"],
+                    ["inRectangle", [32, 19], [42, 22]]],
+                    "action": ["moveToCell", [41, 20]]
+                },
+                {
+                    "condition": ["map", "Mt. Moon Exit"],
+                    "action": ["moveToMap", "Route 4"]
+                },
+				{
+                    "condition": ["all",
+						["map", "Route 4"],
+						["cell", [91,21]]
+					],
+                    "action": ["moveToMap", "Cerulean City"]
+                },
+                {
+                    "condition": ["map", "Route 4"],
+                    "action": ["moveToCell", [91,21]]
+                },
+				{
+                    "condition": ["map", "Cerulean City"],
+                    "action": ["moveToMap", "Pokecenter Cerulean"]
+                },
+				{
+					"condition": ["map", "Pokecenter Cerulean"],
+					"action": ["usePokecenter"]
+				}
+            ]
+        }
+    ],
+    "battle": [
+        {
+            "condition": ["isOpponentShiny"],
+            "action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+        },
+        {
+            "action": ["attack"]
+        }
+    ]
+}
