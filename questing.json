@@ -23,7 +23,7 @@ Behaviour of the script:
 - May go fight Jackson in SSAnne
 Bugs:
 - Expect bugs after the Cascade Badge
-- When leveling in route 24 the bot can end up in an infinity loop trying to run aways constantly: log out"
+- When leveling in route 24 the bot can end up in an infinity loop trying to run aways constantly: log out",
 	"author": "g0ld",
 	"path": [
 		{
