@@ -1,0 +1,1070 @@
+{
+	"name": "Questing - Start to SSAnne
+How to:
+- You should be able to start the script from anywhere between Start and SSAnne
+- When NidoranM is catched at route 22, login and put it in position #1
+Behaviour of the script:
+- Picks Squirtle
+- Catch NidoranM route 22
+- Farm route 22 until NidoranM is 15
+- Farm route 2 after the forest until NidoranM is 16
+- Fight Brock
+- Farm to the MtMoon until Nidorino is 26
+- Pick the Helix fossil
+- Farm to the Route 24 until Nidorino is 35
+- Talk to Bill (and always do that once to check if it's already done)
+- Fight Misty
+- Fight the Team Rocket guy
+- [WORK IN PROGRESS FROM THERE, DO NOT REPORT THE BUGS FOLLOWING THIS STEP]
+- Goes in the stupidly written vision
+- [TODO: add a leveling stage]
+- Talk to Surge but then probably get confused at this point
+- May go fight Jackson in SSAnne
+Bugs:
+- Expect bugs after the Cascade Badge
+- When leveling in route 24 the bot can end up in an infinity loop trying to run aways constantly: log out"
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["all",
+				["any",
+					["map", "Start"],
+					["map", "Player Bedroom Pallet"],
+					["map", "Player House Pallet"],
+					["map", "Pallet Town"],
+					["map", "Oaks Lab"]
+				],
+				["!hasItem", "Boulder Badge"]
+			],
+			"actions": [
+				{
+					"condition": ["map", "Start"],
+					"actions": [
+						{
+							"condition": ["isNpcOnCell", [21,38]],
+							"action": ["talkToNpcOnCell", [21,38]]
+						},
+						{
+							"action": ["moveToCell", [26,87]]
+						}
+					]
+				},
+				{
+					"condition": ["teamSize", "=", 0],
+					"actions": [
+						{
+							"condition": ["map", "Player Bedroom Pallet"],
+							"action": ["moveToMap", "Player House Pallet"]
+						},
+						{
+							"condition": ["map", "Player House Pallet"],
+							"action": ["moveToMap", "Link"]
+						},
+						{
+							"condition": ["map", "Pallet Town"],
+							"action": ["moveToMap", "Oaks Lab"]
+						},
+						{
+							"condition": ["map", "Oaks Lab"],
+							"actions": [
+								{
+									"condition": ["!isset", "OAK"],
+									"action": ["talkToNpcOnCell", [7,4]],
+								},
+								{
+									"action": ["talkToNpcOnCell", [10,6]],
+								}
+							]
+						}
+					]
+				},
+				{
+					"condition": ["all",
+						["teamSize", ">", 0],
+						["!hasItem", "Pokeball"]
+					],
+					"actions": [
+						{
+							"condition": ["map", "Oaks Lab"],
+							"actions": [
+								{
+									"condition": ["!hasItem", "Pokedex"],
+									"action": ["talkToNpcOnCell", [7,4]],
+								},
+								{
+									"action": ["moveToMap", "Link"],
+								}
+							]
+						},
+						{
+							"condition": ["map", "Pallet Town"],
+							"action": ["moveToMap", "Player House Pallet"]
+						},
+						{
+							"condition": ["map", "Player House Pallet"],
+							"actions": [
+								{
+									"condition": ["!isset", "MOM"],
+									"action": ["talkToNpcOnCell", [7,6]]
+								},
+								{
+									"action": ["moveToMap", "Player Bedroom Pallet"],
+								}
+							]
+						},
+						{
+							"condition": ["map", "Player Bedroom Pallet"],
+							"actions": [
+								{
+									"condition": ["isNpcOnCell", [7,3]],
+									"action": ["talkToNpcOnCell", [7,3]]
+								},
+								{
+									"condition": ["isNpcOnCell", [6,3]],
+									"action": ["talkToNpcOnCell", [6,3]]
+								}
+							]
+						}
+					]
+				},
+				{
+					"condition": ["hasItem", "Pokeball"],
+					"actions": [
+						{
+							"condition": ["map", "Player Bedroom Pallet"],
+							"action": ["moveToMap", "Player House Pallet"]
+						},
+						{
+							"condition": ["map", "Player House Pallet"],
+							"action": ["moveToMap", "Link"]
+						},
+						{
+							"condition": ["map", "Pallet Town"],
+							"actions": [
+								{
+									"condition": ["npcExists", "#133"],
+									"action": ["talkToNpc", "#133"]
+								},
+								{
+									"condition": ["npcExists", "Jackson"],
+									"action": ["talkToNpc", "Jackson"]
+								},
+								{
+									"action": ["moveToMap", "Route 1"]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"condition": ["map", "Route 1"],
+			"action": ["moveToMap", "Route 1 Stop House"]
+		},
+		{
+			"condition": ["map", "Route 1 Stop House"],
+			"action": ["moveToMap", "Viridian City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["isSet", "Viridian Jackson defeated"]
+			],
+			"action": ["moveToMap", "Route 2"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["!isSet", "Viridian Jackson checked"],
+			],
+			"action": ["moveToMap", "Viridian City School"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School"],
+				["!isSet", "Viridian Jackson checked"],
+				["!isSet", "Viridian Jackson defeated"]
+			],
+			"action": ["moveToMap", "Viridian City School Underground"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School Underground"],
+				["!isSet", "Viridian Jackson checked"],
+				["!isSet", "Viridian Jackson defeated"],
+				["isNpcOnCell", [7, 6]]
+			],
+			"action": ["talkToNpcOnCell", [7, 6]]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School Underground"],
+				["!isSet", "Viridian Jackson defeated"],
+				["isSet", "NidoranM lvl>=15"],
+				["isNpcOnCell", [7, 6]]
+			],
+			"action": ["talkToNpcOnCell", [7, 6]]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School Underground"],
+				["!isSet", "Viridian Jackson defeated"],
+				["isSet", "NidoranM lvl>=15"]
+			],
+			"action": ["talkToNpc", "Jackson"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School Underground"],
+				["isSet", "Viridian Jackson defeated"],
+			],
+			"action": ["moveToMap", "Viridian City School"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School"],
+				["isSet", "Viridian Jackson defeated"],
+			],
+			"action": ["moveToMap", "Viridian City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School Underground"],
+				["!isSet", "NidoranM lvl>=15"]
+			],
+			"action": ["moveToMap", "Viridian City School"],
+			"set": "Viridian Jackson checked"
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School"],
+				["!isSet", "NidoranM lvl>=15"]
+			],
+			"action": ["moveToMap", "Viridian City"],
+		},
+
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["!isSet", "Pokecenter Viridian"],
+				["isSet", "Viridian Jackon checked"]
+			],
+			"action": ["moveToMap", "Pokecenter Viridian"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToMap", "Pokecenter Viridian"]
+		},
+		{
+			"condition": ["all",
+				["map", "Pokecenter Viridian"],
+				["isPokemon1Usable"]
+			],
+			"action": ["moveToMap", "Viridian City"],
+			"set": "Pokecenter Viridian"
+		},
+		{
+			"condition": ["map", "Pokecenter Viridian"],
+			"action": ["usePokecenter"],
+			"set": "Pokecenter Viridian"
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["!isSet", "hasNidoranM"],
+				["!hasItem", "Pokeball"]
+			],
+			"action": ["moveToMap", "Viridian Pokemart"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian Pokemart"],
+				["!isSet", "hasNidoranM"],
+				["hasItem", "Pokeball"]
+			],
+			"action": ["moveToMap", "Viridian City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["!isSet", "hasNidoranM"]
+			],
+			"action": ["moveToMap", "Route 22"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["!isSet", "NidoranM lvl>=15"]
+			],
+			"action": ["moveToMap", "Route 22"]
+		},
+		
+		
+		
+		{
+			"condition": ["all",
+				["map", "Route 22"],
+				["!isSet", "hasNidoranM"]
+			],
+			"action": ["moveToRectangle", [50, 11], [52, 20]]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 22"],
+				["!isSet", "NidoranM lvl>=15"],
+				["isPokemon1Usable"]
+			],
+			"action": ["moveToRectangle", [50, 11], [52, 20]]
+		},
+		{
+			"condition": ["map", "Route 22"],
+			"action": ["moveToMap", "Viridian City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToMap", "Pokecenter Viridian"]
+		},
+
+		
+		
+		{
+			"condition": ["all",
+				["map", "Viridian City"],
+				["!isSet", "Viridian Jackson defeated"]
+			],
+			"action": ["moveToMap", "Viridian City School"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School"],
+				["!isSet", "Viridian Jackson defeated"]
+			],
+			"action": ["moveToMap", "Viridian City School Underground"]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School Underground"],
+				["!isSet", "Viridian Jackson defeated"],
+				["!isSet", "Viridian can access Jackon"]
+			],
+			"action": ["talkToNpcOnCell", [7, 6]]
+		},
+		{
+			"condition": ["all",
+				["map", "Viridian City School Underground"],
+				["!isSet", "Viridian Jackson defeated"]
+			],
+			"action": ["talkToNpc", "Jackson"]
+		},
+		
+		
+		{
+			"condition": ["all",
+				["map", "Route 2"],
+				["inRectangle", [0, 90], [24, 130]]
+			],
+			"action": ["moveToMap", "Route 2 Stop"]
+		},
+		{
+			"condition": ["map", "Route 2 Stop"],
+			"action": ["moveToMap", "Viridian Forest"]
+		},
+		{
+			"condition": ["map", "Viridian Forest"],
+			"action": ["moveToMap", "Route 2 Stop2"]
+		},
+		{
+			"condition": ["map", "Route 2 Stop2"],
+			"action": ["moveToMap", "Route 2"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 2"],
+				["inRectangle", [0, 0], [28, 42]],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToMap", "Pewter City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 2"],
+				["inRectangle", [0, 0], [28, 42]],
+				["!isSet", "Pokecenter Pewter"]
+			],
+			"action": ["moveToMap", "Pewter City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 2"],
+				["inRectangle", [0, 0], [28, 42]],
+				["!isSet", "NidoranM lvl>=16"]
+			],
+			"action": ["moveToRectangle", [19, 10], [21, 14]]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 2"],
+				["inRectangle", [0, 0], [28, 42]],
+			],
+			"action": ["moveToMap", "Pewter City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Pewter City"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToMap", "Pokecenter Pewter"]
+		},
+		{
+			"condition": ["all",
+				["map", "Pewter City"],
+				["cell", [23, 21]],
+				["isNpcOnCell", [23, 22]]
+			],
+			"action": ["talkToNpcOnCell", [23, 22]]
+		},
+		{
+			"condition": ["all",
+				["map", "Pewter City"],
+				["hasItem", "Boulder Badge"]
+			],
+			"action": ["moveToMap", "Route 3"]
+		},
+		{
+			"condition": ["all",
+				["map", "Pokecenter Pewter"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["usePokecenter"],
+			"set": "Pokecenter Pewter"
+		},
+		{
+			"condition": ["all",
+				["map", "Pewter City"],
+				["!isSet", "Pokecenter Pewter"]
+			],
+			"action": ["moveToMap", "Pokecenter Pewter"],
+		},
+		{
+			"condition": ["map", "Pokecenter Pewter"],
+			"action": ["moveToMap", "Pewter City"],
+			"set": "Pokecenter Pewter"
+		},
+		{
+			"condition": ["all",
+				["map", "Pewter City"],
+				["!isSet", "NidoranM lvl>=16"]
+			],
+			"action": ["moveToMap", "Route 2"]
+		},
+		{
+			"condition": ["map", "Pewter City"],
+			"action": ["moveToMap", "Pewter Gym"]
+		},
+		{
+			"condition": ["all",
+				["map", "Pewter Gym"],
+				["hasItem", "Boulder Badge"]
+			],
+			"action": ["moveToMap", "Pewter City"]
+		},
+		{
+			"condition": ["map", "Pewter Gym"],
+			"action": ["talkToNpcOnCell", [7, 5]]
+		},
+		
+		
+		
+		{
+			"condition": ["all",
+				["map", "Route 3"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToMap", "Pokecenter Route 3"]
+		},
+		{
+			"condition": ["all",
+				["map", "Pokecenter Route 3"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["usePokecenter"],
+			"set": "Pokecenter Route 3"
+		},
+		{
+			"condition": ["map", "Pokecenter Route 3"],
+			"action": ["moveToMap", "Route 3"],
+			"set": "Pokecenter Route 3"
+		},
+		{
+			"condition": ["all",
+				["map", "Route 3"],
+				["!isSet", "Pokecenter Route 3"]
+			],
+			"action": ["moveToMap", "Pokecenter Route 3"]
+		},
+		{
+			"condition": ["map", "Route 3"],
+			"action": ["moveToMap", "Mt. Moon 1F"]
+		},
+		{
+			"condition": ["all",
+				["map", "Mt. Moon 1F"],
+				["inRectangle", [19, 16], [28, 33]],
+				["isNpcOnCell", [19, 16]]
+			],
+			"action": ["talkToNpcOnCell", [19, 16]]
+		},
+		{
+			"condition": ["all",
+				["map", "Mt. Moon 1F"],
+				["inRectangle", [19, 16], [61, 63]],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToMap", "Route 3"]
+		},
+		{
+			"condition": ["all",
+				["map", "Mt. Moon 1F"],
+				["inRectangle", [19, 16], [61, 63]],
+				["!isSet", "NidoranM lvl>=26"]
+			],
+			"action": ["moveToRectangle", [37, 60], [40, 62]]
+		},
+		{
+			"condition": ["all",
+				["map", "Mt. Moon 1F"],
+				["inRectangle", [19, 16], [61, 63]]],
+			"action": ["moveToCell", [21, 20]]
+		},
+		{
+			"condition": ["all",
+				["map", "Mt. Moon B1F"],
+				["inRectangle", [55, 14], [76, 35]]],
+			"action": ["moveToCell", [56, 34]]
+		},
+		{
+			"condition": ["all",
+				["map", "Mt. Moon B2F"],
+				["inRectangle", [17, 22], [63, 70]],
+				["isNpcOnCell", [25, 29]]
+			],
+			"actions": [
+				{
+					"condition": ["all",
+						["!isSet", "MtMoon go talk to fossil guy"],
+						["!isSet", "MtMoon talked to fossil guy"]
+					],
+					"action": ["talkToNpcOnCell", [25, 29]]
+				},
+				{
+					"condition": ["all",
+						["isSet", "MtMoon go talk to fossil guy"],
+						["!isSet", "MtMoon talked to fossil guy"]
+					],
+					"action": ["talkToNpcOnCell", [23, 31]]
+				},
+				{
+					"condition": ["all",
+						["isSet", "MtMoon go talk to fossil guy"],
+						["isSet", "MtMoon talked to fossil guy"]
+					],
+					"action": ["talkToNpcOnCell", [25, 29]]
+				}
+			]
+		},
+		{
+			"condition": ["all",
+				["map", "Mt. Moon B2F"],
+				["inRectangle", [17, 22], [63, 70]],
+				["isNpcOnCell", [26, 23]]],
+			"action": ["talkToNpcOnCell", [26, 23]]
+		},
+		{
+			"condition": ["all",
+				["map", "Mt. Moon B2F"],
+				["inRectangle", [17, 22], [63, 70]]],
+			"action": ["moveToCell", [17, 27]]
+		},
+		{
+			"condition": ["all",
+			["map", "Mt. Moon B1F"],
+			["inRectangle", [32, 19], [42, 22]]],
+			"action": ["moveToCell", [41, 20]]
+		},
+		{
+			"condition": ["map", "Mt. Moon Exit"],
+			"action": ["moveToMap", "Route 4"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 4"],
+				["cell", [91,21]]
+			],
+			"action": ["moveToMap", "Cerulean City"]
+		},
+		{
+			"condition": ["map", "Route 4"],
+			"action": ["moveToCell", [91,21]]
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean City"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToMap", "Pokecenter Cerulean"]
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean City"],
+				["!isSet", "Pokecenter Cerulean"]
+			],
+			"action": ["moveToMap", "Pokecenter Cerulean"]
+		},
+		{
+			"condition": ["all",
+				["map", "Pokecenter Cerulean"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["usePokecenter"],
+			"set": "Pokecenter Cerulean"
+		},
+		{
+			"condition": ["map", "Pokecenter Cerulean"],
+			"action": ["moveToMap", "Cerulean City"],
+			"set": "Pokecenter Cerulean"
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean City"],
+				["hasItem", "Cascade Badge"]
+			],
+			"action": ["moveToMap", "Route 5"]
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean City"],
+				["!isSet", "NidoranM lvl>=35"]
+			],
+			"action": ["moveToCell", [39, 0]]
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean City"],
+				["!isSet", "Bill has book"]
+			],
+			"action": ["moveToCell", [39, 0]]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 24"],
+				["inRectangle", [14, 1], [15, 30]],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToMap", "Cerulean City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 24"],
+				["inRectangle", [14, 1], [15, 30]],
+				["!isSet", "NidoranM lvl>=35"]
+			],
+			"action": ["moveToMap", "Route 25"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 24"],
+				["inRectangle", [14, 1], [15, 30]],
+				["!isSet", "Bill has book"]
+			],
+			"action": ["moveToMap", "Route 25"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 25"],
+				["isPokemon1Usable", "=", false]
+			],
+			"action": ["moveToCell", [14, 30]]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 25"],
+				["!isSet", "NidoranM lvl>=35"]
+			],
+			"action": ["moveToCell", [9, 30]]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 24"],
+				["inRectangle", [6,0], [9, 16]],
+				["!isSet", "NidoranM lvl>=35"],
+				["isPokemon1Usable"]
+			],
+			"action": ["moveToRectangle", [7,2], [9, 2]]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 24"],
+				["inRectangle", [6,0], [9, 16]]
+			],
+			"action": ["moveToMap", "Route 25"]
+		},
+		
+		
+		
+		
+		{
+			"condition": ["all",
+				["map", "Route 25"],
+				["!isSet", "Bill has book"]
+			],
+			"action": ["moveToMap", "Bills House"]
+		},
+		{
+			"condition": ["all",
+				["map", "Bills House"],
+				["!isSet", "Bill found book"],
+			],
+			"action": ["talkToNpcOnCell", [18,2]]
+		},
+		{
+			"condition": ["all",
+				["map", "Bills House"],
+				["isSet", "Bill found book"],
+				["!isSet", "Bill has book"]
+			],
+			"action": ["talkToNpc", "Bill"]
+		},
+		{
+			"condition": ["all",
+				["map", "Bills House"],
+				["isSet", "Bill has book"]
+			],
+			"action": ["moveToMap", "Route 25"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 25"],
+				["isSet", "Bill has book"]
+			],
+			"action": ["moveToMap", "Route 24"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 24"],
+				["isSet", "Bill has book"]
+			],
+			"action": ["moveToMap", "Cerulean City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean City"],
+				["isSet", "Bill has book"],
+				["!hasItem", "Cascade Badge"]
+			],
+			"action": ["moveToMap", "Cerulean Gym"]
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean Gym"],
+				["!hasItem", "Cascade Badge"]
+			],
+			"action": ["talkToNpcOnCell", [10, 6]]
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean Gym"],
+				["hasItem", "Cascade Badge"]
+			],
+			"action": ["moveToMap", "Cerulean City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Cerulean City"],
+				["hasItem", "Cascade Badge"],
+				["isNpcOnCell", [47, 27]]
+			],
+			"action": ["talkToNpcOnCell", [47, 27]]
+		},
+		{
+			"condition": ["map", "Route 5"],
+			"action": ["moveToMap", "Underground House 1"]
+		},
+		{
+			"condition": ["map", "Underground House 1"],
+			"action": ["moveToMap", "Underground2"]
+		},
+		{
+			"condition": ["map", "Underground2"],
+			"action": ["moveToMap", "Underground House 2"]
+		},
+		{
+			"condition": ["map", "Underground House 2"],
+			"action": ["moveToMap", "Route 6"]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 6"],
+				["isNpcOnCell", [24, 54]],
+				["!isSet", "Psychic Wade explained"]
+			],
+			"action": ["talkToNpcOnCell", [24, 54]]
+		},
+		{
+			"condition": ["map", "Vermilion City 2"],
+			"action": ["talkToNpcOnCell", [44, 30]]
+		},
+		{
+			"condition": ["map", "Pokecenter Vermilion"],
+			"action": ["moveToMap", "Vermilion City"]
+		},
+		{
+			"condition": ["map", "Route 6"],
+			"action": ["moveToMap", "Vermilion City"]
+		},
+		{
+			"condition": ["all",
+				["map", "Vermilion City"],
+				["!isSet", "Psychic Wade explained"],
+				["isNpcOnCell", [38, 63]]
+			],
+			"action": ["moveToMap", "Route 6"]
+		},
+		{
+			"condition": ["all",
+				["map", "Vermilion City"],
+				["isSet", "Psychic Wade explained"],
+				["isNpcOnCell", [38, 63]]
+			],
+			"action": ["talkToNpcOnCell", [38, 63]]
+		},
+		{
+			"condition": ["map", "Vermilion City"],
+			"action": ["moveToCell", [40, 67]]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne 1F"],
+				["!isSet", "CS Cut obtained"],
+				["!isSet", "Usher Dale talked"]
+			],
+			"action": ["talkToNpc", "Usher Dale"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne Basement Room5"],
+				["npcExists", "Usher Dale"],
+				["!isSet", "SSAnne Basement PC to check"]
+			],
+			"action": ["talkToNpc", "Usher Dale"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne Basement Room5"],
+				["npcExists", "Usher Dale"],
+				["isSet", "SSAnne Basement PC to check"]
+			],
+			"action": ["talkToNpcOnCell", [6, 3]]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne Basement Room5"],
+				["npcExists", "Usher Dale"],
+				["isSet", "SSAnne Basement PC checked"]
+			],
+			"action": ["talkToNpc", "Usher Dale"]
+		},
+		{
+			"condition": ["map", "SSAnne Basement Room5"],
+			"action": ["moveToMap", "SSAnne Basement"]
+		},
+		{
+			"condition": ["map", "SSAnne Basement"],
+			"action": ["moveToMap", "SSAnne 1F"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne 1F"],
+				["isSet", "Usher Dale talked"]
+			],
+			"action": ["moveToMap", "SSAnne 2F"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne 2F"],
+				["!isSet", "SSAnne Jackson defeated"]
+			],
+			"action": ["moveToMap", "SSAnne 3F"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne 3F"],
+				["!isSet", "SSAnne Jackson defeated"]
+			],
+			"action": ["moveToMap", "SSAnne 3F Battle Room"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne 3F Battle Room"],
+				["!isSet", "SSAnne Jackson defeated"]
+			],
+			"action": ["talkToNpc", "Jackson"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne 3F Battle Room"],
+				["isSet", "SSAnne Jackson defeated"]
+			],
+			"action": ["moveToMap", "SSAnne 3F"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne 3F"],
+				["isSet", "SSAnne Jackson defeated"]
+			],
+			"action": ["moveToMap", "SSAnne 2F"]
+		},
+		{
+			"condition": ["all",
+				["map", "SSAnne 1F"],
+				["isSet", "CS Cut obtained"]
+			],
+			"action": ["moveToMap", "Vermilion City"]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["isOpponentShiny"],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"condition": ["all",
+				["opponentPokemon", "Nidoran M"],
+				["alreadyCaught", "=", false]
+			],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"condition": ["all",
+				["opponentPokemon", "Nidoran M"],
+				["!isSet", "hasNidoranM"]
+			],
+			"action": ["attack"],
+			"set": "hasNidoranM"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidoran M"],
+				["!isSet", "hasNidoranM"]
+			],
+			"action": ["attack"],
+			"set": "hasNidoranM"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidoran M"],
+				["activeLevel", "<=", 5],
+				["isPokemon2Usable"]
+			],
+			"action": ["sendNextPokemon"],
+			"set": "hasNidoranM"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidoran M"],
+				["activeLevel", ">=", 15],
+				["!isSet", "NidoranM lvl>=15"]
+			],
+			"action": ["attack"],
+			"set": "NidoranM lvl>=15"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidorino"],
+				["activeLevel", ">=", 16],
+				["!isSet", "NidoranM lvl>=16"]
+			],
+			"action": ["attack"],
+			"set": "NidoranM lvl>=16"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidoran M"],
+				["activeLevel", ">=", 16],
+				["!isSet", "NidoranM lvl>=16"]
+			],
+			"action": ["attack"],
+			"set": "NidoranM lvl>=16"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidorino"],
+				["activeLevel", ">=", 26],
+				["!isSet", "NidoranM lvl>=26"]
+			],
+			"action": ["attack"],
+			"set": "NidoranM lvl>=26"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidoking"],
+				["activeLevel", ">=", 26],
+				["!isSet", "NidoranM lvl>=26"]
+			],
+			"action": ["attack"],
+			"set": "NidoranM lvl>=26"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidorino"],
+				["activeLevel", ">=", 35],
+				["!isSet", "NidoranM lvl>=35"]
+			],
+			"action": ["attack"],
+			"set": "NidoranM lvl>=35"
+		},
+		{
+			"condition": ["all",
+				["activePokemon", "Nidoking"],
+				["activeLevel", ">=", 35],
+				["!isSet", "NidoranM lvl>=35"]
+			],
+			"action": ["attack"],
+			"set": "NidoranM lvl>=35"
+		},
+		{
+			"action": ["attack"]
+		}
+	],
+	"switches": [
+			["Viridian Jackon checked", "Maybe you can talk with him and try to negotiate the spot."],
+			["Viridian Jackson defeated", "You will not take my spot!"],
+			["Viridian Jackson defeated", "Sorry, the young boy there doesn't want to give his spot, I'm truly sorry..."],
+			["Checked Viridian City to Route 2", "Why don't you go and check the school?"],
+			["Viridian City to Route 2", "Well, now, I've had my coffee, and that's what I need to get going!"],
+			["MtMoon go talk to fossil guy", "You should talk to someone before touching these."],
+			["MtMoon talked to fossil guy", "Did you get the one you like?"],
+			["Bill looking for book", "I am Bill, do you think you could do me a favor?"],
+			["Bill found book", "Oh! Looks like Bill's research book is under his pillow."],
+			["Bill found book", "There is nothing else here..."],
+			["Bill has book", "Oh!! You found it!"],
+			["Bill has book", "Have you enjoyed the Cruise yet?"],
+			["Psychic Wade talked", "I wonder what that dude wants..."],
+			["Psychic Wade explained", "You see, that was Lance, the Pokemon League Champion."],
+			["Psychic Wade explained", "Please, hurry up and tell him that."],
+			["Surge talked", "I am in the middle of something, you want to tell me something?"],
+			["Psychic Wade congrated", "For your effort, I want to give you this, a token found from future Vermilion City!"],
+			["Usher Dale talked", "Hello! Welcome aboard the S.S. Anne - the most upscale ship that is presently serviceable!"],
+			["Usher Dale talked", "Enjoy your passengership on the S.S. Anne!"],
+			["SSAnne Basement PC to check", "Welcome to S.S. Anne! Please book your personal information in our passenger registry."],
+			["SSAnne Basement PC checked", "Please wait a moment..."],
+			["SSAnne Jackson defeated", "Consider us off of the SS Anne now... With a goody-two-shoes scrub as my rommate, and the overall-pathetic pool of trainers, this ride will be a waste of time."],
+			["CS Cut obtained", "????????????????? Work in progress"]
+	]
+}
