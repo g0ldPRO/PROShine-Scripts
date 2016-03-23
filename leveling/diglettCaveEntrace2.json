@@ -1,0 +1,63 @@
+{
+	"name": "Leveling: Digletts Cave Entrance 2 (near Vermilion)",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["isPokemon1Usable"],
+			"actions": [
+				{
+					"condition": ["map", "Pokecenter Vermilion"],
+					"action": ["moveToMap", "Vermilion City"]
+				},
+				{
+					"condition": ["map", "Vermilion City"],
+					"action": ["moveToMap", "Route 11"]
+				},
+				{
+					"condition": ["map", "Route 11"],
+					"action": ["moveToMap", "Digletts Cave Entrance 2"]
+				},
+				{
+					"condition": ["map", "Digletts Cave Entrance 2"],
+					"action": ["moveToRectangle", [17, 25], [24, 26]]
+				}
+			]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["map", "Digletts Cave Entrance 2"],
+					"action": ["moveToMap", "Route 11"]
+				},
+				{
+					"condition": ["map", "Route 11"],
+					"action": ["moveToMap", "Vermilion City"]
+				},
+				{
+					"condition": ["map", "Vermilion City"],
+					"action": ["moveToMap", "Pokecenter Vermilion"]
+				},
+				{
+					"condition": ["map", "Pokecenter Vermilion"],
+					"action": ["usePokecenter"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["isOpponentShiny"],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"condition": ["all",
+				["activeLevel", "<=", 20],
+				["isPokemon2Usable"]
+			],
+			"action": ["sendNextPokemon"],
+		},
+		{
+			"action": ["attack"]
+		}
+	]
+}
