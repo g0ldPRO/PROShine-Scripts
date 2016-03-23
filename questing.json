@@ -1,11 +1,12 @@
 {
-	"name": "Questing v0.4.1
+	"name": "Questing v0.4.2
 From Start to the end of SSAnne
 How to:
 - You should be able to start the script from anywhere between Start and SSAnne
 - When NidoranM is catched at route 22, login and put it in position #1
 - Buy as many pokeballs as you can at the same time so you don't miss any shiny
 - Use the moon stone on Nidorino when you get it at Mt.Moon (the bot will stop)
+- If you use another pokemon as #1 instead of Nidoran M/Nidorino/Nidoking after Viridian City, the bot will use it instead and ignore the moon stone stop
 Behaviour of the script:
 - Picks Charmander
 - Catch NidoranM route 22
@@ -734,6 +735,22 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 					"action": ["talkToNpcOnCell", [24, 54]]
 				},
 				{
+					"condition": ["all",
+						["isNpcOnCell", [24, 54]],
+						["isSet", "Surge talked"],
+						["!isSet", "Psychic Wade congrated"]
+					],
+					"action": ["talkToNpcOnCell", [24, 54]]
+				},
+				{
+					"condition": ["all",
+						["isSet", "Surge talked"],
+						["!isSet", "Psychic Wade congrated"]
+					],
+					"action": ["moveToMap", "Vermilion City"],
+					"set": "Surge talked"
+				},
+				{
 					"action": ["moveToMap", "Vermilion City"]
 				}
 			]
@@ -755,7 +772,7 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 					"action": ["moveToMap", "Vermilion City"],
 				}
 			],
-			"set": "Pokecenter Vermilion City"
+			"set": "Pokecenter Vermilion"
 		},
 
 		{
@@ -781,6 +798,11 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 						["isNpcOnCell", [38, 63]]
 					],
 					"action": ["talkToNpcOnCell", [38, 63]]
+				},
+				{
+					"condition": ["!isSet", "Psychic Wade congrated"],
+					"action": ["moveToMap", "Route 6"],
+					"set": "Surge talked"
 				},
 				{
 					"condition": ["!hasItem", "HM01 - Cut"],
