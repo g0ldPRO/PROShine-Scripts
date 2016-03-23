@@ -1,5 +1,5 @@
 {
-	"name": "Questing v0.4
+	"name": "Questing v0.4.1
 From Start to the end of SSAnne
 How to:
 - You should be able to start the script from anywhere between Start and SSAnne
@@ -435,6 +435,14 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 					"action": ["moveToMap", "Pokecenter Route 3"]
 				},
 				{
+					"condition": ["all",
+						["hasItem", "Moon Stone"],
+						["pokemon1", "=", "Nidorino"]
+					],
+					"action": ["moveToRectangle", [83, 17], [85, 22]],
+					"set": "Waiting for you to evolve Nidorino to Nidoking [HUMAN ACTION]"
+				},
+				{
 					"action": ["moveToMap", "Mt. Moon 1F"]
 				}
 			]
@@ -455,21 +463,27 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 		},
 
 		{
-			"condition": ["all",
-				["map", "Mt. Moon 1F"],
-				["inRectangle", [19, 16], [28, 33]]
-			],
+			"condition": ["map", "Mt. Moon 1F"],
 			"actions": [
 				{
 					"condition": ["isPokemon1Usable", "=", false],
 					"action": ["moveToMap", "Route 3"]
 				},
 				{
-					"condition": ["isNpcOnCell", [19, 16]],
+					"condition": ["all",
+						["isSet", "First pokemon ready for Moon Stone"],
+						["isNpcOnCell", [19, 16]],
+						["pokemon1", "=", "Nidorino"]
+					],
 					"action": ["talkToNpcOnCell", [19, 16]]
 				},
 				{
-					"condition": ["pokemon1", "=", "Nidorino"],
+					"condition": ["all",
+						["hasItem", "Moon Stone"],
+						["pokemon1", "=", "Nidorino"],
+						["isSet", "First pokemon ready for Moon Stone"]
+					],
+					"action": ["moveToMap", "Route 3"],
 					"set": "Waiting for you to evolve Nidorino to Nidoking [HUMAN ACTION]"
 				},
 				{
@@ -1034,6 +1048,14 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 			],
 			"action": ["attack"],
 			"set": "First pokemon ready for Brock"
+		},
+		{
+			"condition": ["all",
+				["activeLevel", ">=", 21],
+				["!isSet", "First pokemon ready for Moon Stone"]
+			],
+			"action": ["attack"],
+			"set": "First pokemon ready for Moon Stone"
 		},
 		{
 			"condition": ["all",
