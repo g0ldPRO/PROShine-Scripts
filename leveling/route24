@@ -1,0 +1,73 @@
+{
+	"name": "Leveling: Route 24 (near Cerulean)",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["isPokemon1Usable"],
+			"actions": [
+				{
+					"condition": ["map", "Pokecenter Cerulean"],
+					"action": ["moveToMap", "Cerulean City"]
+				},
+				{
+					"condition": ["map", "Cerulean City"],
+					"action": ["moveToCell", [39,0]]
+				},
+				{
+					"condition": ["all",
+						["map", "Route 24"],
+						["inRectangle", [14, 1], [15, 30]]
+					],
+					"action": ["moveToMap", "Route 25"]
+				},
+				{
+					"condition": ["map", "Route 25"],
+					"action": ["moveToCell", [9, 30]]
+				},
+				{
+					"condition": ["map", "Route 24"],
+					"action": ["moveToRectangle", [7,2], [9, 2]]
+				}
+			]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["all",
+						["map", "Route 24"],
+						["inRectangle", [7, 2], [9, 30]]
+					],
+					"action": ["moveToMap", "Route 25"]
+				},
+				{
+					"condition": ["map", "Route 25"],
+					"action": ["moveToCell", [14, 30]]
+				},
+				{
+					"condition": ["all",
+						["map", "Route 24"],
+						["inRectangle", [14, 1], [15, 30]]
+					],
+					"action": ["moveToMap", "Cerulean City"]
+				},
+				{
+					"condition": ["map", "Cerulean City"],
+					"action": ["moveToMap", "Pokecenter Cerulean"]
+				},
+				{
+					"condition": ["map", "Pokecenter Cerulean"],
+					"action": ["usePokecenter"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["isOpponentShiny"],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"action": ["attack"]
+		}
+	]
+}
