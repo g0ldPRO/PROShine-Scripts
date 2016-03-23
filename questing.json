@@ -5,17 +5,19 @@ How to:
 - You should be able to start the script from anywhere between Start and SSAnne
 - When NidoranM is catched at route 22, login and put it in position #1
 - Buy as many pokeballs as you can at the same time so you don't miss any shiny
-- Use the moon stone on Nidorino, preferably before level 23
+- Use the moon stone on Nidorino when you get it at Mt.Moon (the bot will stop)
 Behaviour of the script:
 - Picks Charmander
 - Catch NidoranM route 22
+- Wait for you to switch
 - Farm route 22 until NidoranM is 14
 - Farm route 2 after the forest until NidoranM is 16
 - Fight Brock
-- Farm to the MtMoon until Nidorino is 28
-- Pick the moon stone (so you can evolve Nidorino)
+- Pick the moon stone
+- If Nidorino is #1, waits for you to evolve Nidorino
+- Farm to the MtMoon until Nidoking is 28
 - Pick the Helix fossil
-- Farm to the Route 24 until Nidorino is 38
+- Farm to the Route 24 until Nidoking is 38
 - Talk to Bill (and always do that once to check if it's already done)
 - Fight Misty
 - Fight the Team Rocket guy
@@ -177,153 +179,119 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 		},
 
 		{
-			"condition": ["all",
-				["map", "Viridian City"],
-				["isSet", "Viridian Jackson defeated"]
-			],
-			"action": ["moveToMap", "Route 2"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City"],
-				["!isSet", "Viridian Jackson checked"],
-			],
-			"action": ["moveToMap", "Viridian City School"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City"],
-				["!isSet", "Pokecenter Viridian"],
-				["isSet", "Viridian Jackson checked"]
-			],
-			"action": ["moveToMap", "Pokecenter Viridian"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City"],
-				["any",
-					["isPokemon1Usable", "=", false],
-					["all",
-						["teamSize", ">=", 2],
-						["isPokemon2Usable", "=", false]
-					]
-				]
-			],
-			"action": ["moveToMap", "Pokecenter Viridian"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City"],
-				["!isSet", "hasNidoranM"],
-				["!hasItem", "Pokeball"]
-			],
-			"action": ["moveToMap", "Viridian Pokemart"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City"],
-				["!isSet", "hasNidoranM"]
-			],
-			"action": ["moveToMap", "Route 22"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City"],
-				["!isSet", "NidoranM lvl>=14"]
-			],
-			"action": ["moveToMap", "Route 22"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City"],
-				["!isSet", "Viridian Jackson defeated"]
-			],
-			"action": ["moveToMap", "Viridian City School"]
+			"condition": ["map", "Viridian City"],
+			"actions": [
+				{
+					"condition": ["isSet", "Viridian Jackson defeated"],
+					"action": ["moveToMap", "Route 2"]
+				},
+				{
+					"condition": ["!isSet", "Viridian Jackson checked"],
+					"action": ["moveToMap", "Viridian City School"]
+				},
+				{
+					"condition": ["!isSet", "Pokecenter Viridian"],
+					"action": ["moveToMap", "Pokecenter Viridian"]
+				},
+				{
+					"condition": ["any",
+							["isPokemon1Usable", "=", false],
+							["all",
+								["teamSize", ">=", 2],
+								["isPokemon2Usable", "=", false]
+							]
+					],
+					"action": ["moveToMap", "Pokecenter Viridian"]
+				},
+				{
+					"condition": ["all",
+						["!isSet", "hasNidoranM"],
+						["!hasItem", "Pokeball"]
+					],
+					"action": ["moveToMap", "Viridian Pokemart"]
+				},
+				{
+					"condition": ["!isSet", "hasNidoranM"],
+					"action": ["moveToMap", "Route 22"]
+				},
+				{
+					"condition": ["!isSet", "NidoranM ready for Viridian Jackson"],
+					"action": ["moveToMap", "Route 22"]
+				},
+				{
+					"condition": ["!isSet", "Viridian Jackson defeated"],
+					"action": ["moveToMap", "Viridian City School"]
+				}
+			]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Viridian City School"],
-				["isSet", "Viridian Jackson defeated"],
-			],
-			"action": ["moveToMap", "Viridian City"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City School"],
-				["!isSet", "Viridian Jackson checked"]
-			],
-			"action": ["moveToMap", "Viridian City School Underground"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City School"],
-				["!isSet", "NidoranM lvl>=14"]
-			],
-			"action": ["moveToMap", "Viridian City"],
-		},
 		{
 			"condition": ["map", "Viridian City School"],
-			"action": ["moveToMap", "Viridian City School Underground"]
+			"actions": [
+				{
+					"condition": ["isSet", "Viridian Jackson defeated"],
+					"action": ["moveToMap", "Viridian City"]
+				},
+				{
+					"condition": ["!isSet", "Viridian Jackson checked"],
+					"action": ["moveToMap", "Viridian City School Underground"]
+				},
+				{
+					"condition": ["!isSet", "NidoranM ready for Viridian Jackson"],
+					"action": ["moveToMap", "Viridian City"],
+				},
+				{
+					"action": ["moveToMap", "Viridian City School Underground"]
+				}
+			]
 		},
 
 		{
-			"condition": ["all",
-				["map", "Viridian City School Underground"],
-				["isSet", "Viridian Jackson defeated"]
-			],
-			"action": ["moveToMap", "Viridian City School"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City School Underground"],
-				["!isSet", "Viridian Jackson checked"],
-				["isNpcOnCell", [7, 6]]
-			],
-			"action": ["talkToNpcOnCell", [7, 6]]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City School Underground"],
-				["isSet", "NidoranM lvl>=14"],
-				["isNpcOnCell", [7, 6]]
-			],
-			"action": ["talkToNpcOnCell", [7, 6]]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City School Underground"],
-				["isSet", "NidoranM lvl>=14"]
-			],
-			"action": ["talkToNpc", "Jackson"]
-		},
-		{
-			"condition": ["all",
-				["map", "Viridian City School Underground"],
-				["!isSet", "NidoranM lvl>=14"]
-			],
-			"action": ["moveToMap", "Viridian City School"],
-			"set": "Viridian Jackson checked"
+			"condition": ["map", "Viridian City School Underground"],
+			"actions": [
+				{
+					"condition": ["isSet", "Viridian Jackson defeated"],
+					"action": ["moveToMap", "Viridian City School"]
+				},
+				{
+					"condition": ["all",
+						["any",
+							["isSet", "NidoranM ready for Viridian Jackson"],
+							["!isSet", "Viridian Jackson checked"]
+						],
+						["isNpcOnCell", [7, 6]]
+					],
+					"action": ["talkToNpcOnCell", [7, 6]]
+				},
+				{
+					"condition": ["isSet", "NidoranM ready for Viridian Jackson"],
+					"action": ["talkToNpc", "Jackson"]
+				},
+				{
+					"condition": ["!isSet", "NidoranM ready for Viridian Jackson"],
+					"action": ["moveToMap", "Viridian City School"],
+					"set": "Viridian Jackson checked"
+				}
+			]
 		},
 
-
-		{
-			"condition": ["all",
-				["map", "Pokecenter Viridian"],
-				["any",
-					["isPokemon1Usable", "=", false],
-					["all",
-						["teamSize", ">=", 2],
-						["isPokemon2Usable", "=", false]
-					]
-				]
-			],
-			"action": ["usePokecenter"],
-			"set": "Pokecenter Viridian"
-		},
 		{
 			"condition": ["map", "Pokecenter Viridian"],
-			"action": ["moveToMap", "Viridian City"],
+			"actions": [
+				{
+					"condition": ["any",
+						["isPokemon1Usable", "=", false],
+						["all",
+							["teamSize", ">=", 2],
+							["isPokemon2Usable", "=", false]
+						]
+					],
+					"action": ["usePokecenter"],
+				},
+				{
+					"action": ["moveToMap", "Viridian City"],
+				},
+			],
 			"set": "Pokecenter Viridian"
 		},
 
@@ -333,23 +301,27 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 				["!isSet", "hasNidoranM"],
 				["hasItem", "Pokeball"]
 			],
-			"action": ["moveToMap", "Viridian City"]
+			"action": ["moveToMap", "Viridian City"],
+			"set": "Waiting for you to buy pokeballs [HUMAN ACTION]"
 		},
-		
-		{
-			"condition": ["all",
-				["map", "Route 22"],
-				["isPokemon1Usable"],
-				["any",
-					["!isSet", "NidoranM lvl>=14"],
-					["!isSet", "hasNidoranM"],
-				]
-			],
-			"action": ["moveToRectangle", [50, 11], [52, 20]]
-		},
+
 		{
 			"condition": ["map", "Route 22"],
-			"action": ["moveToMap", "Viridian City"]
+			"actions": [
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["any",
+							["!isSet", "NidoranM ready for Viridian Jackson"],
+							["!isSet", "hasNidoranM"],
+						]
+					],
+					"action": ["moveToRectangle", [50, 11], [52, 20]]
+				},
+				{
+					"action": ["moveToMap", "Viridian City"]
+				}
+			]
 		},
 		
 		
@@ -374,146 +346,140 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 			"action": ["moveToMap", "Route 2"]
 		},
 
-
-		{
-			"condition": ["all",
-				["map", "Route 2"],
-				["inRectangle", [0, 0], [28, 42]],
-				["!isSet", "NidoranM lvl>=16"],
-				["isPokemon1Usable"],
-				["isSet", "Pokecenter Pewter"]
-			],
-			"action": ["moveToRectangle", [19, 10], [21, 14]]
-		},
 		{
 			"condition": ["all",
 				["map", "Route 2"],
 				["inRectangle", [0, 0], [28, 42]]
 			],
-			"action": ["moveToMap", "Pewter City"]
+			"actions": [
+				{
+					"condition": ["all",
+						["!isSet", "First pokemon ready for Brock"],
+						["isPokemon1Usable"],
+						["isSet", "Pokecenter Pewter"]
+					],
+					"action": ["moveToRectangle", [19, 10], [21, 14]]
+				},
+				{
+					"action": ["moveToMap", "Pewter City"]
+				}
+			]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Pewter City"],
-				["hasItem", "Boulder Badge"]
-			],
-			"action": ["moveToMap", "Route 3"]
-		},
-		{
-			"condition": ["all",
-				["map", "Pewter City"],
-				["any",
-					["isPokemon1Usable", "=", false],
-					["!isSet", "Pokecenter Pewter"]
-				]
-			],
-			"action": ["moveToMap", "Pokecenter Pewter"]
-		},
-		{
-			"condition": ["all",
-				["map", "Pewter City"],
-				["cell", [23, 21]],
-				["isNpcOnCell", [23, 22]]
-			],
-			"action": ["talkToNpcOnCell", [23, 22]]
-		},
-		{
-			"condition": ["all",
-				["map", "Pewter City"],
-				["!isSet", "NidoranM lvl>=16"]
-			],
-			"action": ["moveToMap", "Route 2"]
-		},
 		{
 			"condition": ["map", "Pewter City"],
-			"action": ["moveToMap", "Pewter Gym"]
+			"actions": [
+				{
+					"condition": ["all",
+						["cell", [23, 21]],
+						["isNpcOnCell", [23, 22]]
+					],
+					"action": ["talkToNpcOnCell", [23, 22]]
+				},
+				{
+					"condition": ["hasItem", "Boulder Badge"],
+					"action": ["moveToMap", "Route 3"]
+				},
+				{
+					"condition": ["any",
+						["isPokemon1Usable", "=", false],
+						["!isSet", "Pokecenter Pewter"]
+					],
+					"action": ["moveToMap", "Pokecenter Pewter"]
+				},
+				{
+					"condition": ["!isSet", "First pokemon ready for Brock"],
+					"action": ["moveToMap", "Route 2"]
+				},
+				{
+					"action": ["moveToMap", "Pewter Gym"]
+				}
+			]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Pokecenter Pewter"],
-				["isPokemon1Usable", "=", false]
-			],
-			"action": ["usePokecenter"],
-			"set": "Pokecenter Pewter"
-		},
 		{
 			"condition": ["map", "Pokecenter Pewter"],
-			"action": ["moveToMap", "Pewter City"],
+			"actions": [
+				{
+					"condition": ["isPokemon1Usable", "=", false],
+					"action": ["usePokecenter"],
+				},
+				{
+					"action": ["moveToMap", "Pewter City"],
+				}
+			],
 			"set": "Pokecenter Pewter"
 		},
 
 		{
-			"condition": ["all",
-				["map", "Pewter Gym"],
-				["hasItem", "Boulder Badge"]
-			],
-			"action": ["moveToMap", "Pewter City"]
-		},
-		{
 			"condition": ["map", "Pewter Gym"],
-			"action": ["talkToNpcOnCell", [7, 5]]
+			"actions": [
+				{
+					"condition": ["hasItem", "Boulder Badge"],
+					"action": ["moveToMap", "Pewter City"]
+				},
+				{
+					"action": ["talkToNpcOnCell", [7, 5]]
+				}
+			]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Route 3"],
-				["any",
-					["isPokemon1Usable", "=", false],
-					["!isSet", "Pokecenter Route 3"]
-				]
-			],
-			"action": ["moveToMap", "Pokecenter Route 3"]
-		},
 		{
 			"condition": ["map", "Route 3"],
-			"action": ["moveToMap", "Mt. Moon 1F"]
+			"actions": [
+				{
+					"condition": ["any",
+						["isPokemon1Usable", "=", false],
+						["!isSet", "Pokecenter Route 3"]
+					],
+					"action": ["moveToMap", "Pokecenter Route 3"]
+				},
+				{
+					"action": ["moveToMap", "Mt. Moon 1F"]
+				}
+			]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Pokecenter Route 3"],
-				["isPokemon1Usable", "=", false]
-			],
-			"action": ["usePokecenter"],
-			"set": "Pokecenter Route 3"
-		},
 		{
 			"condition": ["map", "Pokecenter Route 3"],
-			"action": ["moveToMap", "Route 3"],
+			"actions": [
+				{
+					"condition": ["isPokemon1Usable", "=", false],
+					"action": ["usePokecenter"],
+				},
+				{
+					"action": ["moveToMap", "Route 3"],
+				}
+			],
 			"set": "Pokecenter Route 3"
 		},
 
 		{
 			"condition": ["all",
 				["map", "Mt. Moon 1F"],
-				["inRectangle", [19, 16], [28, 33]],
-				["isNpcOnCell", [19, 16]]
+				["inRectangle", [19, 16], [28, 33]]
 			],
-			"action": ["talkToNpcOnCell", [19, 16]]
-		},
-		{
-			"condition": ["all",
-				["map", "Mt. Moon 1F"],
-				["inRectangle", [19, 16], [61, 63]],
-				["isPokemon1Usable", "=", false]
-			],
-			"action": ["moveToMap", "Route 3"]
-		},
-		{
-			"condition": ["all",
-				["map", "Mt. Moon 1F"],
-				["inRectangle", [19, 16], [61, 63]],
-				["!isSet", "NidoranM lvl>=28"]
-			],
-			"action": ["moveToRectangle", [37, 60], [40, 62]]
-		},
-		{
-			"condition": ["all",
-				["map", "Mt. Moon 1F"],
-				["inRectangle", [19, 16], [61, 63]]],
-			"action": ["moveToCell", [21, 20]]
+			"actions": [
+				{
+					"condition": ["isPokemon1Usable", "=", false],
+					"action": ["moveToMap", "Route 3"]
+				},
+				{
+					"condition": ["isNpcOnCell", [19, 16]],
+					"action": ["talkToNpcOnCell", [19, 16]]
+				},
+				{
+					"condition": ["pokemon1", "=", "Nidorino"],
+					"set": "Waiting for you to evolve Nidorino to Nidoking [HUMAN ACTION]"
+				},
+				{
+					"condition": ["!isSet", "First pokemon ready for Mt.Moon"],
+					"action": ["moveToRectangle", [37, 60], [40, 62]]
+				},
+				{
+					"action": ["moveToCell", [21, 20]]
+				}
+			]
 		},
 
 		{
@@ -522,43 +488,42 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 				["inRectangle", [55, 14], [76, 35]]],
 			"action": ["moveToCell", [56, 34]]
 		},
+
 		{
 			"condition": ["all",
 				["map", "Mt. Moon B2F"],
-				["inRectangle", [17, 22], [63, 70]],
-				["isNpcOnCell", [25, 29]]
+				["inRectangle", [17, 22], [63, 70]]
 			],
 			"actions": [
 				{
-					"condition": ["any",
-						["all",
-							["!isSet", "MtMoon go talk to fossil guy"],
-							["!isSet", "MtMoon talked to fossil guy"]
-						],
-						["all",
-							["isSet", "MtMoon go talk to fossil guy"],
-							["isSet", "MtMoon talked to fossil guy"]
-						]
-					],
-					"action": ["talkToNpcOnCell", [25, 29]]
+					"condition": ["isNpcOnCell", [25, 29]],
+					"actions": [
+						{
+							"condition": ["any",
+								["all",
+									["!isSet", "MtMoon go talk to fossil guy"],
+									["!isSet", "MtMoon talked to fossil guy"]
+								],
+								["all",
+									["isSet", "MtMoon go talk to fossil guy"],
+									["isSet", "MtMoon talked to fossil guy"]
+								]
+							],
+							"action": ["talkToNpcOnCell", [25, 29]]
+						},
+						{
+							"action": ["talkToNpcOnCell", [23, 31]]
+						}
+					]
 				},
 				{
-					"action": ["talkToNpcOnCell", [23, 31]]
+					"condition": ["isNpcOnCell", [26, 23]],
+					"action": ["talkToNpcOnCell", [26, 23]]
+				},
+				{
+					"action": ["moveToCell", [17, 27]]
 				}
 			]
-		},
-		{
-			"condition": ["all",
-				["map", "Mt. Moon B2F"],
-				["inRectangle", [17, 22], [63, 70]],
-				["isNpcOnCell", [26, 23]]],
-			"action": ["talkToNpcOnCell", [26, 23]]
-		},
-		{
-			"condition": ["all",
-				["map", "Mt. Moon B2F"],
-				["inRectangle", [17, 22], [63, 70]]],
-			"action": ["moveToCell", [17, 27]]
 		},
 
 		{
@@ -583,152 +548,147 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 			"action": ["moveToCell", [91,21]]
 		},
 
-
 		{
-			"condition": ["all",
-				["map", "Cerulean City"],
-				["any",
-					["isPokemon1Usable", "=", false],
-					["!isSet", "Pokecenter Cerulean"]
-				]
-			],
-			"action": ["moveToMap", "Pokecenter Cerulean"]
-		},
-		{
-			"condition": ["all",
-				["map", "Cerulean City"],
-				["hasItem", "Cascade Badge"],
-				["isNpcOnCell", [47, 27]]
-			],
-			"action": ["talkToNpcOnCell", [47, 27]]
-		},
-		{
-			"condition": ["all",
-				["map", "Cerulean City"],
-				["hasItem", "Cascade Badge"]
-			],
-			"action": ["moveToMap", "Route 5"]
-		},
-		{
-			"condition": ["all",
-				["map", "Cerulean City"],
-				["any",
-					["!isSet", "NidoranM lvl>=38"],
-					["!isSet", "Bill has book"]
-				]
-			],
-			"action": ["moveToCell", [39, 0]]
-		},
-		{
-			"condition": ["all",
-				["map", "Cerulean City"],
-				["isSet", "Bill has book"],
-				["!hasItem", "Cascade Badge"]
-			],
-			"action": ["moveToMap", "Cerulean Gym"]
+			"condition": ["map", "Cerulean City"],
+			"actions": [
+				{
+					"condition": ["any",
+						["isPokemon1Usable", "=", false],
+						["!isSet", "Pokecenter Cerulean"]
+					],
+					"action": ["moveToMap", "Pokecenter Cerulean"]
+				},
+				{
+					"condition": ["all",
+						["hasItem", "Cascade Badge"],
+						["isNpcOnCell", [47, 27]]
+					],
+					"action": ["talkToNpcOnCell", [47, 27]]
+				},
+				{
+					"condition": ["hasItem", "Cascade Badge"],
+					"action": ["moveToMap", "Route 5"]
+				},
+				{
+					"condition": ["any",
+						["!isSet", "First pokemon ready for Misty"],
+						["!isSet", "Bill has book"]
+					],
+					"action": ["moveToCell", [39, 0]]
+				},
+				{
+					"condition": ["all",
+						["isSet", "Bill has book"],
+						["!hasItem", "Cascade Badge"]
+					],
+					"action": ["moveToMap", "Cerulean Gym"]
+				}
+			]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Pokecenter Cerulean"],
-				["isPokemon1Usable", "=", false]
-			],
-			"action": ["usePokecenter"],
-			"set": "Pokecenter Cerulean"
-		},
 		{
 			"condition": ["map", "Pokecenter Cerulean"],
-			"action": ["moveToMap", "Cerulean City"],
+			"actions": [
+				{
+					"condition": ["isPokemon1Usable", "=", false],
+					"action": ["usePokecenter"],
+				},
+				{
+					"action": ["moveToMap", "Cerulean City"],
+				}
+			],
 			"set": "Pokecenter Cerulean"
 		},
 
 		{
 			"condition": ["all",
 				["map", "Route 24"],
-				["inRectangle", [14, 1], [15, 30]],
-				["isPokemon1Usable"],
-				["any",
-					["!isSet", "NidoranM lvl>=38"],
-					["!isSet", "Bill has book"]
-				]
+				["inRectangle", [14, 1], [15, 30]]
 			],
-			"action": ["moveToMap", "Route 25"]
-		},
-		{
-			"condition": ["all",
-				["map", "Route 24"],
-				["inRectangle", [14, 1], [15, 30]],
-			],
-			"action": ["moveToMap", "Cerulean City"]
+			"actions": [
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["any",
+							["!isSet", "First pokemon ready for Misty"],
+							["!isSet", "Bill has book"]
+						]
+					],
+					"action": ["moveToMap", "Route 25"]
+				},
+				{
+					"action": ["moveToMap", "Cerulean City"]
+				}
+			]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Route 25"],
-				["isPokemon1Usable"],
-				["!isSet", "NidoranM lvl>=38"]
-			],
-			"action": ["moveToCell", [9, 30]]
-		},
-		{
-			"condition": ["all",
-				["map", "Route 25"],
-				["!isSet", "Bill has book"]
-			],
-			"action": ["moveToMap", "Bills House"]
-		},
 		{
 			"condition": ["map", "Route 25"],
-			"action": ["moveToCell", [14, 30]]
+			"actions": [
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!isSet", "First pokemon ready for Misty"]
+					],
+					"action": ["moveToCell", [9, 30]]
+				},
+				{
+					"condition": ["!isSet", "Bill has book"],
+					"action": ["moveToMap", "Bills House"]
+				},
+				{
+					"action": ["moveToCell", [14, 30]]
+				}
+			]
 		},
 
 		{
 			"condition": ["all",
 				["map", "Route 24"],
-				["inRectangle", [6,0], [9, 16]],
-				["!isSet", "NidoranM lvl>=38"],
-				["isPokemon1Usable"]
+				["inRectangle", [6, 0], [9, 16]]
 			],
-			"action": ["moveToRectangle", [7,2], [9, 2]]
-		},
-		{
-			"condition": ["all",
-				["map", "Route 24"],
-				["inRectangle", [6,0], [9, 16]]
-			],
-			"action": ["moveToMap", "Route 25"]
+			"actions": [
+				{
+					"condition": ["all",
+						["!isSet", "First pokemon ready for Misty"],
+						["isPokemon1Usable"]
+					],
+					"action": ["moveToRectangle", [7,2], [9, 2]]
+				},
+				{
+					"action": ["moveToMap", "Route 25"]
+				}
+			]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Bills House"],
-				["!isSet", "Bill found book"],
-			],
-			"action": ["talkToNpcOnCell", [18,2]]
-		},
-		{
-			"condition": ["all",
-				["map", "Bills House"],
-				["!isSet", "Bill has book"]
-			],
-			"action": ["talkToNpc", "Bill"]
-		},
 		{
 			"condition": ["map", "Bills House"],
-			"action": ["moveToMap", "Route 25"]
+			"actions": [
+				{
+					"condition": ["!isSet", "Bill found book"],
+					"action": ["talkToNpcOnCell", [18,2]]
+				},
+				{
+					"condition": ["!isSet", "Bill has book"],
+					"action": ["talkToNpc", "Bill"]
+				},
+				{
+					"action": ["moveToMap", "Route 25"]
+				}
+			]
 		},
 
-
-		{
-			"condition": ["all",
-				["map", "Cerulean Gym"],
-				["!hasItem", "Cascade Badge"]
-			],
-			"action": ["talkToNpcOnCell", [10, 6]]
-		},
 		{
 			"condition": ["map", "Cerulean Gym"],
-			"action": ["moveToMap", "Cerulean City"]
+			"actions": [
+				{
+					"condition": ["!hasItem", "Cascade Badge"],
+					"action": ["talkToNpcOnCell", [10, 6]]
+				},
+				{
+					"action": ["moveToMap", "Cerulean City"]
+				}
+			]
 		},
 
 		{
@@ -748,17 +708,21 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 			"action": ["moveToMap", "Route 6"]
 		},
 
-		{
-			"condition": ["all",
-				["map", "Route 6"],
-				["isNpcOnCell", [24, 54]],
-				["!isSet", "Psychic Wade explained"]
-			],
-			"action": ["talkToNpcOnCell", [24, 54]]
-		},
+
 		{
 			"condition": ["map", "Route 6"],
-			"action": ["moveToMap", "Vermilion City"]
+			"actions": [
+				{
+					"condition": ["all",
+						["isNpcOnCell", [24, 54]],
+						["!isSet", "Psychic Wade explained"]
+					],
+					"action": ["talkToNpcOnCell", [24, 54]]
+				},
+				{
+					"action": ["moveToMap", "Vermilion City"]
+				}
+			]
 		},
 
 		{
@@ -767,61 +731,54 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 		},
 
 		{
-			"condition": ["all",
-				["map", "Pokecenter Vermilion"],
-				["isPokemon1Usable", "=", false]
+			"condition": ["map", "Pokecenter Vermilion"],
+			"actions": [
+				{
+					"condition": ["isPokemon1Usable", "=", false],
+					"action": ["usePokecenter"],
+				},
+				{
+					"action": ["moveToMap", "Vermilion City"],
+				}
 			],
-			"action": ["usePokecenter"],
 			"set": "Pokecenter Vermilion City"
 		},
-		{
-			"condition": ["map", "Pokecenter Vermilion"],
-			"action": ["moveToMap", "Vermilion City"],
-			"set": "Pokecenter Vermilion"
-		},
-
 
 		{
-			"condition": ["all",
-				["map", "Vermilion City"],
-				["any",
-					["isPokemon1Usable", "=", false],
-					["!isSet", "Pokecenter Vermilion"]
-				]
-			],
-			"action": ["moveToMap", "Pokecenter Vermilion"]
-		},
-		{
-			"condition": ["all",
-				["map", "Vermilion City"],
-				["!isSet", "Psychic Wade explained"],
-				["isNpcOnCell", [38, 63]]
-			],
-			"action": ["moveToMap", "Route 6"]
-		},
-		{
-			"condition": ["all",
-				["map", "Vermilion City"],
-				["isSet", "Psychic Wade explained"],
-				["isNpcOnCell", [38, 63]]
-			],
-			"action": ["talkToNpcOnCell", [38, 63]]
-		},
-		{
-			"condition": ["all",
-				["map", "Vermilion City"],
-				["!hasItem", "HM01 - Cut"]
-			],
-			"action": ["moveToCell", [40, 67]]
-		},
-
-		{
-			"condition": ["all",
-				["map", "Vermilion City"],
-				["!hasItem", "Thunder Badge"]
-			],
-			"action": ["moveToRectangle", [30, 45], [34, 48]],
-			"set": "Waiting for you to use cut and go through the tree [WIP]"
+			"condition": ["map", "Vermilion City"],
+			"actions": [
+				{
+					"condition": ["any",
+						["isPokemon1Usable", "=", false],
+						["!isSet", "Pokecenter Vermilion"]
+					],
+					"action": ["moveToMap", "Pokecenter Vermilion"]
+				},
+				{
+					"condition": ["all",
+						["!isSet", "Psychic Wade explained"],
+						["isNpcOnCell", [38, 63]]
+					],
+					"action": ["moveToMap", "Route 6"]
+				},
+				{
+					"condition": ["all",
+						["isSet", "Psychic Wade explained"],
+						["isNpcOnCell", [38, 63]]
+					],
+					"action": ["talkToNpcOnCell", [38, 63]]
+				},
+				{
+					"condition": ["!hasItem", "HM01 - Cut"],
+					"action": ["moveToCell", [40, 67]]
+				},
+				{
+					"condition": ["!hasItem", "Thunder Badge"],
+					"action": ["moveToRectangle", [30, 45], [34, 48]],
+					"set": "Waiting for you to use cut and go through the tree [HUMAN ACTION]",
+					"set": "The End"
+				}
+			]
 		},
 
 		{
@@ -1065,54 +1022,44 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 					["activePokemon", "Nidoking"]
 				],
 				["activeLevel", ">=", 14],
-				["!isSet", "NidoranM lvl>=14"]
+				["!isSet", "NidoranM ready for Viridian Jackson"]
 			],
 			"action": ["attack"],
-			"set": "NidoranM lvl>=14"
+			"set": "NidoranM ready for Viridian Jackson"
 		},
 		{
 			"condition": ["all",
-				["any",
-					["activePokemon", "Nidoran M"],
-					["activePokemon", "Nidorino"],
-					["activePokemon", "Nidoking"]
-				],
 				["activeLevel", ">=", 16],
-				["!isSet", "NidoranM lvl>=16"]
+				["!isSet", "First pokemon ready for Brock"]
 			],
 			"action": ["attack"],
-			"set": "NidoranM lvl>=16"
+			"set": "First pokemon ready for Brock"
 		},
 		{
 			"condition": ["all",
-				["any",
-					["activePokemon", "Nidorino"],
-					["activePokemon", "Nidoking"]
-				],
 				["activeLevel", ">=", 28],
-				["!isSet", "NidoranM lvl>=28"]
+				["!isSet", "First pokemon ready for Mt.Moon"]
 			],
 			"action": ["attack"],
-			"set": "NidoranM lvl>=28"
+			"set": "First pokemon ready for Mt.Moon"
 		},
 		{
 			"condition": ["all",
-				["any",
-					["activePokemon", "Nidoran M"],
-					["activePokemon", "Nidorino"],
-					["activePokemon", "Nidoking"]
-				],
 				["activeLevel", ">=", 38],
-				["!isSet", "NidoranM lvl>=38"]
+				["!isSet", "First pokemon ready for Misty"]
 			],
 			"action": ["attack"],
-			"set": "NidoranM lvl>=38"
+			"set": "First pokemon ready for Misty"
 		},
 		{
 			"action": ["attack"]
 		}
 	],
 	"switches": [
+			["OAK", "but you can have one"],
+			["OAK", "which pokemon do you want"],
+			["MOM", "Remember that I love you"],
+			["MOM", "glad that you dropped by"],
 			["Viridian Jackson checked", "Maybe you can talk with him and try to negotiate the spot."],
 			["Viridian Jackson defeated", "You will not take my spot!"],
 			["Viridian Jackson defeated", "Sorry, the young boy there doesn't want to give his spot, I'm truly sorry..."],
@@ -1144,10 +1091,6 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 			["SSAnne Talked to Blissey", "Blissey wants to give something"],
 			["SSAnne Security Officer Chris", "You should already know this area is off-limits!"],
 			["SSAnne Captain", "I owe ye one..."],
-			["SSAnne Jackson defeated", "Consider us off of the SS Anne now... With a goody-two-shoes scrub as my rommate, and the overall-pathetic pool of trainers, this ride will be a waste of time."],
-			["OAK", "but you can have one"],
-			["OAK", "which pokemon do you want"],
-			["MOM", "Remember that I love you"],
-			["MOM", "glad that you dropped by"]
+			["SSAnne Jackson defeated", "Consider us off of the SS Anne now... With a goody-two-shoes scrub as my rommate, and the overall-pathetic pool of trainers, this ride will be a waste of time."]
 	]
 }
