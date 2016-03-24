@@ -3,7 +3,10 @@
 	"author": "g0ld",
 	"path": [
 		{
-			"condition": ["isPokemon1Usable"],
+			"condition": ["all",
+				["isPokemon1Usable"],
+				["isPokemon2Usable"]
+			],
 			"actions": [
 				{
 					"condition": ["map", "Pokecenter Vermilion"],
