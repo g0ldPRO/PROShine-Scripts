@@ -5,18 +5,19 @@ How to:
 - You should be able to start the script from anywhere between Start and SSAnne
 - When NidoranM is catched at route 22, login and put it in position #1
 - Buy as many pokeballs as you can at the same time so you don't miss any shiny
-- Use the moon stone on Nidorino when you get it at Mt.Moon (the bot will stop Route 3)
+- Use the moon stone on Nidorino when you get it at Mt.Moon (the bot will stop)
 - If you use another pokemon as #1 instead of Nidoran M/Nidorino/Nidoking after Viridian City, the bot will use it instead and ignore the moon stone stop
-- If the bot stops in a Pokemart, login and buy pokeballs
 Behaviour of the script:
 - Picks Charmander
 - Catch NidoranM route 22
 - Wait for you to switch
+- [HUMAN ACTION]
 - Farm route 22 until NidoranM is 14
 - Farm route 2 after the forest until NidoranM is 16
 - Fight Brock
 - Pick the moon stone
 - If Nidorino is #1, waits for you to evolve Nidorino
+- [HUMAN ACTION]
 - Farm to the MtMoon until Nidoking is 28
 - Pick the Helix fossil
 - Farm to the Route 24 until Nidoking is 38
@@ -31,6 +32,11 @@ Behaviour of the script:
 - Talk to all NPCs required to reach the Captain
 - Get the HM01
 - Wait in front of the arena
+- [HUMAN ACTION]
+- Go look for the HM05 and catch pokemons if needed
+- Go back to Cerulean and take the Rock Tunnel
+- Go from Lavender to Celadon
+- [The End, currently waiting for a new version of the bot]
 Bugs:
 - Expect bugs after the Cascade Badge
 - When leveling in route 24 the bot can end up in an infinity loop trying to run away constantly: log out
