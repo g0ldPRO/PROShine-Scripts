@@ -1,12 +1,13 @@
 {
-	"name": "Questing v0.4.2
-From Start to the end of SSAnne
+	"name": "Questing v0.5.1a
+From Start to the end of Rock Tunnel
 How to:
 - You should be able to start the script from anywhere between Start and SSAnne
 - When NidoranM is catched at route 22, login and put it in position #1
 - Buy as many pokeballs as you can at the same time so you don't miss any shiny
-- Use the moon stone on Nidorino when you get it at Mt.Moon (the bot will stop)
+- Use the moon stone on Nidorino when you get it at Mt.Moon (the bot will stop Route 3)
 - If you use another pokemon as #1 instead of Nidoran M/Nidorino/Nidoking after Viridian City, the bot will use it instead and ignore the moon stone stop
+- If the bot stops in a Pokemart, login and buy pokeballs
 Behaviour of the script:
 - Picks Charmander
 - Catch NidoranM route 22
@@ -33,7 +34,8 @@ Behaviour of the script:
 Bugs:
 - Expect bugs after the Cascade Badge
 - When leveling in route 24 the bot can end up in an infinity loop trying to run away constantly: log out
-Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
+Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491
+Contributors: c0pper",
 	"author": "g0ld",
 	"path": [
 		{
@@ -507,7 +509,7 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 		{
 			"condition": ["all",
 				["map", "Mt. Moon B2F"],
-				["inRectangle", [17, 22], [63, 70]]
+				["inRectangle", [10, 22], [63, 70]]
 			],
 			"actions": [
 				{
@@ -579,6 +581,13 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 						["isNpcOnCell", [47, 27]]
 					],
 					"action": ["talkToNpcOnCell", [47, 27]]
+				},
+				{
+					"condition": ["all",
+						["hasItem", "HM05 - FLash"],
+						["!hasItem", "Rainbow Badge"]
+					],
+					"action": ["moveToMap", "Route 9"]
 				},
 				{
 					"condition": ["hasItem", "Cascade Badge"],
@@ -707,26 +716,241 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 		},
 
 		{
+			"condition": ["map", "Route 9"],
+			"actions": [
+				{
+					"condition": ["isNpcOnCell", [11,29]],
+					"action": ["talkToNpcOnCell", [11,29]]
+				},
+				{
+					"condition": ["isNpcOnCell", [24,13]],
+					"action": ["talkToNpcOnCell", [24,13]]
+				},
+				{
+					"condition": ["isNpcOnCell", [25,13]],
+					"action": ["talkToNpcOnCell", [25,13]]
+				},
+				{
+					"condition": ["isNpcOnCell", [26,13]],
+					"action": ["talkToNpcOnCell", [26,13]]
+				},
+				{
+					"condition": ["all",
+						["hasItem", "HM05 - Flash"],
+						["!hasItem", "Rainbow Badge"]
+					],
+					"action": ["moveToMap", "Route 10"]
+				},
+				{
+					"action": ["moveToMap", "Cerulean City"]
+				}
+			]
+		},
+
+		{
+			"condition": ["all",
+				["map", "Route 10"],
+				["inRectangle", [10,3], [20,8]]
+			],
+			"actions": [
+				{
+					"condition": ["all",
+						["hasItem", "HM05 - Flash"],
+						["!hasItem", "Rainbow Badge"]
+					],
+					"action": ["moveToMap", "Rock Tunnel 1"]
+				},
+				{
+					"action": ["moveToMap", "Route 9"]
+				}
+			]
+		},
+
+		{
+			"condition": ["all",
+				["map", "Rock Tunnel 1"],
+				["any",
+					["inRectangle", [40, 8], [44, 10]],
+					["inRectangle", [34, 8], [38, 9]],
+					["inRectangle", [34, 8], [36, 16]],
+				]
+			],
+			"action": ["moveToCell", [35, 16]]
+		},
+		{
+			"condition": ["all",
+				["map", "Rock Tunnel 2"],
+				["any",
+					["inRectangle", [36, 9], [37, 17]],
+					["inRectangle", [38, 8], [45, 10]],
+					["inRectangle", [37, 5], [45,  7]],
+					["inRectangle", [35, 5], [37, 5]],
+					["inRectangle", [29, 7], [26, 9]],
+					["inRectangle", [29, 5], [35, 6]],
+					["inRectangle", [29, 5], [29, 6]],
+					["inRectangle", [26, 6], [29, 6 ]],
+					["inRectangle", [26, 6], [26,9]],
+					["inRectangle", [18, 9], [26, 9]],
+					["inRectangle", [15, 10], [18, 9]],
+					["inRectangle", [13, 9], [15, 10]],
+					["inRectangle", [11, 8], [12, 10]],
+					["inRectangle", [9, 8], [11, 8]],
+					["inRectangle", [8, 6], [9, 8]],
+					["inRectangle", [6, 5], [8, 6]]
+				]
+			],
+			"action": ["moveToCell", [7, 5]]
+		},
+		{
+			"condition": ["all",
+				["map", "Rock Tunnel 1"],
+				["any",
+					["inRectangle", [6, 6], [10, 9]],
+					["inRectangle", [10, 7], [12,8]],
+					["inRectangle",[12, 5], [16, 8]],
+					["inRectangle", [17, 8], [20, 8]],
+					["inRectangle", [20, 8], [23, 9]],
+					["inRectangle", [23, 9], [23, 13]],
+					["inRectangle", [6, 13], [23, 13]],
+					["inRectangle", [6, 13], [9, 16]]
+				]
+			],
+			"action": ["moveToCell", [8, 15]]
+		},
+		{
+			"condition": ["all",
+				["map", "Rock Tunnel 2"],
+				["any",
+					["inRectangle", [9, 13], [26, 21]],
+					["inRectangle", [12, 21], [26, 22]],
+					["inRectangle", [9, 22], [12, 22]],
+					["inRectangle", [9, 13], [26, 21]],
+					["inRectangle", [9, 22], [10, 27]],
+					["inRectangle", [7, 25], [10, 27]]
+				]
+			],
+			"action": ["moveToCell", [8, 26]]
+		},
+		{
+			"condition": ["all",
+				["map", "Rock Tunnel 1"],
+				["any",
+					["inRectangle", [6, 28], [9, 31]],
+					["inRectangle", [8, 27], [9, 31]],
+					["inRectangle", [8, 27], [22, 32]]
+				]
+			],
+			"action": ["moveToCell", [21, 32]]
+		},
+		{
+			"condition": ["all",
+				["map", "Route 10"],
+				["inRectangle", [2, 44], [7, 47]],
+			],
+			"action": ["moveToMap", "Lavender Town"]
+		},
+		{
+			"condition": ["map", "Lavender Town"],
+			"action": ["moveToMap", "Route 8"]
+		},
+		{
+			"condition": ["map", "Route 8"],
+			"action": ["moveToMap", "Underground House 4"]
+		},
+		{
+			"condition": ["map", "Underground House 4"],
+			"action": ["moveToMap", "Underground1"]
+		},
+		{
+			"condition": ["map", "Underground1"],
+			"action": ["moveToMap", "Underground House 3"]
+		},
+		{
+			"condition": ["map", "Underground House 3"],
+			"action": ["moveToMap", "Route 7"]
+		},
+		{
+			"condition": ["map", "Route 7"],
+			"action": ["moveToMap", "Celadon City"]
+		},
+		{
+			"condition": ["map", "Celadon City"],
+			"action": ["moveToMap", "Celadon Gamecorner Stairs"]
+		},
+		{
+			"condition": ["map", "Celadon Gamecorner Stairs"],
+			"action": ["moveToMap", "Rocket Hideout B1F"]
+		},
+
+		{
 			"condition": ["map", "Route 5"],
-			"action": ["moveToMap", "Underground House 1"]
+			"actions": [
+				{
+					"condition": ["all",
+						["hasItem", "HM05 - Flash"],
+						["!hasItem", "Rainbow Badge"]
+					],
+					"action": ["moveToMap", "Cerulean City"]
+				},
+				{
+					"action": ["moveToMap", "Underground House 1"]
+				}
+			]
 		},
 		{
 			"condition": ["map", "Underground House 1"],
-			"action": ["moveToMap", "Underground2"]
+			"actions": [
+				{
+					"condition": ["all",
+						["hasItem", "HM05 - Flash"],
+						["!hasItem", "Rainbow Badge"]
+					],
+					"action": ["moveToMap", "Route 5"]
+				},
+				{
+					"action": ["moveToMap", "Underground2"]
+				}
+			]
 		},
 		{
 			"condition": ["map", "Underground2"],
-			"action": ["moveToMap", "Underground House 2"]
+			"actions": [
+				{
+					"condition": ["all",
+						["hasItem", "HM05 - Flash"],
+						["!hasItem", "Rainbow Badge"]
+					],
+					"action": ["moveToMap", "Underground House 1"]
+				},
+				{
+					"action": ["moveToMap", "Underground House 2"]
+				}
+			]
 		},
 		{
 			"condition": ["map", "Underground House 2"],
-			"action": ["moveToMap", "Route 6"]
+			"actions": [
+				{
+					"condition": ["all",
+						["hasItem", "HM05 - Flash"],
+						["!hasItem", "Rainbow Badge"]
+					],
+					"action": ["moveToMap", "Underground2"]
+				},
+				{
+					"action": ["moveToMap", "Route 6"]
+				}
+			]
 		},
 
 
 		{
 			"condition": ["map", "Route 6"],
 			"actions": [
+				{
+					"condition": ["isPokemon1Usable", "=", false],
+					"action": ["moveToMap", "Vermilion City"]
+				},
 				{
 					"condition": ["all",
 						["isNpcOnCell", [24, 54]],
@@ -748,10 +972,22 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 						["!isSet", "Psychic Wade congrated"]
 					],
 					"action": ["moveToMap", "Vermilion City"],
-					"set": "Surge talked"
+					"set": "Surge talked",
+					"set": "Psychic Wade congrated"
 				},
 				{
+					"condition": ["all",
+						["hasItem", "HM01 - Cut"],
+						["!isSet", "First pokemon ready for Surge"]
+					],
+					"action": ["moveToRectangle", [24,47], [28,53]]
+				},
+				{
+					"condition": ["!hasItem", "HM05 - Flash"],
 					"action": ["moveToMap", "Vermilion City"]
+				},
+				{
+					"action": ["moveToMap", "Underground House 2"]
 				}
 			]
 		},
@@ -809,10 +1045,70 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 					"action": ["moveToCell", [40, 67]]
 				},
 				{
+					"condition": ["all",
+						["!hasItem", "Thunder Badge"],
+						["!isSet", "First pokemon ready for Surge"]
+					],
+					"action": ["moveToMap", "Route 6"]
+				},
+				{
 					"condition": ["!hasItem", "Thunder Badge"],
 					"action": ["moveToRectangle", [30, 45], [34, 48]],
 					"set": "Waiting for you to use cut and go through the tree [HUMAN ACTION]",
 					"set": "The End"
+				},
+				{
+					"condition": ["any",
+						["!isSet", "First pokemon does not need digglet cave"],
+						["all",
+							["!hasItem", "HM05 - Flash"],
+							["any",
+								["hasItem", "Pokeball"],
+								["hasItem", "Great Ball"],
+								["hasItem", "Ultra Ball"]
+							]
+						]
+					],
+					"action": ["moveToMap", "Route 11"]
+				},
+				{
+					"condition": ["all",
+						["all",
+							["!hasItem", "Pokeball"],
+							["!hasItem", "Great Ball"],
+							["!hasItem", "Ultra Ball"]
+						],
+						["!hasItem", "HM05 - Flash"]
+					],
+					"action": ["moveToMap", "Vermilion Pokemart"]
+				},
+				{
+					"condition": ["all",
+						["hasItem", "HM05 - Flash"],
+						["!hasItem", "Poke Flute"]
+					],
+					"action": ["moveToMap", "Route 6"]
+				}
+			]
+		},
+
+		{
+			"condition": ["map", "Vermilion Pokemart"],
+			"actions": [
+				{
+					"condition": ["all",
+						["all",
+							["!hasItem", "Pokeball"],
+							["!hasItem", "Great Ball"],
+							["!hasItem", "Ultra Ball"]
+						],
+						["!hasItem", "HM05 - Flash"]
+					],
+					"action": ["moveToRectangle", [0,0], [5000, 5000]],
+					"set": "Wait for you to buy pokeballs in case the HM05 needs them [HUMAN ACTION]"
+				},
+				{
+					"action": ["moveToMap", "Vermilion City"]
 				}
 			]
 		},
@@ -1002,6 +1298,292 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 			"condition": ["map", "SSAnne 3F Battle Room"],
 			"action": ["moveToMap", "SSAnne 3F"],
 			"set": "SSAnne Jackson defeated"
+		},
+
+		{
+			"condition": ["map", "Route 11"],
+			"actions": [
+				{
+					"condition": ["isNpcOnCell", [10, 13]],
+					"action": ["talkToNpcOnCell", [10, 13]]
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["isSet", "Remember to unset 'Oak's Aide wants more pokemons'"],
+						["isSet", "Oak's Aide wants more pokemons"]
+					],
+					"action": ["moveToMap", "Digletts Cave Entrance 2"],
+					"set": "to get pass the buggy assert",
+					"unset": "Oak's Aide wants more pokemons"
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["isSet", "Remember to unset 'Oak's Aide wants more pokemons'"]
+					],
+					"action": ["moveToMap", "Digletts Cave Entrance 2"],
+					"set": "to get pass the buggy assert",
+					"unset": "Remember to unset 'Oak's Aide wants more pokemons'",
+				},
+				{
+					"condition": ["all",
+						["isSet", "Oak's Aide wants more pokemons"],
+						["isPokemon1Usable"],
+						["any",
+							["hasItem", "Pokeball"],
+							["hasItem", "Great Ball"],
+							["hasItem", "Ultra Ball"]
+						]
+					],
+					"action": ["moveToGrass"]
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["any",
+							["!isSet", "First pokemon does not need digglet cave"],
+							["all",
+								["!hasItem", "HM05 - Flash"],
+								["any",
+									["hasItem", "Pokeball"],
+									["hasItem", "Great Ball"],
+									["hasItem", "Ultra Ball"]
+								]
+							]
+						]
+					],
+					"action": ["moveToMap", "Digletts Cave Entrance 2"]
+				},
+				{
+					"action": ["moveToMap", "Vermilion City"]
+				}
+			]
+		},
+
+		{
+			"condition": ["map", "Digletts Cave Entrance 2"],
+			"actions": [
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["isSet", "Remember to unset 'Oak's Aide wants more pokemons'"],
+						["isSet", "Oak's Aide wants more pokemons"]
+					],
+					"action": ["moveToMap", "Digletts Cave"],
+					"set": "to get pass the buggy assert",
+					"unset": "Oak's Aide wants more pokemons"
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["isSet", "Remember to unset 'Oak's Aide wants more pokemons'"]
+					],
+					"action": ["moveToMap", "Digletts Cave"],
+					"set": "to get pass the buggy assert",
+					"unset": "Remember to unset 'Oak's Aide wants more pokemons'",
+				},
+				{
+					"condition": ["all",
+						["!isSet", "First pokemon does not need digglet cave"],
+						["isPokemon1Usable"],
+						["!isSet", "Oak's Aide wants more pokemons"]
+					],
+					"action": ["moveToRectangle", [17, 25], [24, 26]]
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["all",
+							["!hasItem", "HM05 - Flash"],
+							["any",
+								["hasItem", "Pokeball"],
+								["hasItem", "Great Ball"],
+								["hasItem", "Ultra Ball"]
+							]
+						],
+						["!isSet", "Oak's Aide wants more pokemons"]
+					],
+					"action": ["moveToMap", "Digletts Cave"]
+				},
+				{
+					"action": ["moveToMap", "Route 11"]
+				}
+			]
+		},
+
+		{
+			"condition": ["map", "Digletts Cave"],
+			"actions": [
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["isSet", "Remember to unset 'Oak's Aide wants more pokemons'"],
+						["isSet", "Oak's Aide wants more pokemons"]
+					],
+					"action": ["moveToMap", "Digletts Cave Entrance 1"],
+					"set": "to get pass the buggy assert",
+					"unset": "Oak's Aide wants more pokemons"
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["isSet", "Remember to unset 'Oak's Aide wants more pokemons'"]
+					],
+					"action": ["moveToMap", "Digletts Cave Entrance 1"],
+					"set": "to get pass the buggy assert",
+					"unset": "Remember to unset 'Oak's Aide wants more pokemons'",
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["any",
+							["hasItem", "Pokeball"],
+							["hasItem", "Great Ball"],
+							["hasItem", "Ultra Ball"]
+						],
+						["!isSet", "Oak's Aide wants more pokemons"]
+					],
+					"action": ["moveToMap", "Digletts Cave Entrance 1"],
+				},
+				{
+					"action": ["moveToMap", "Digletts Cave Entrance 2"],
+				}
+			]
+		},
+
+		{
+			"condition": ["map", "Digletts Cave Entrance 1"],
+			"actions": [
+				{
+					"condition": ["all",
+						["any",
+							["hasItem", "Pokeball"],
+							["hasItem", "Great Ball"],
+							["hasItem", "Ultra Ball"]
+						],
+						["!isSet", "hasPokeballs"]
+					],
+					"action": ["moveToRectangle", [12,24], [18,27]],
+					"set": "hasPokeballs"
+				},
+				{
+					"condition": ["all",
+						["all",
+							["!hasItem", "Pokeball"],
+							["!hasItem", "Great Ball"],
+							["!hasItem", "Ultra Ball"]
+						],
+						["isSet", "hasPokeballs"]
+					],
+					"action": ["moveToMap", "Digletts Cave"],
+					"set": "placeholder",
+					"unset": "hasPokeballs"
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["isSet", "Remember to unset 'Oak's Aide wants more pokemons'"],
+						["isSet", "Oak's Aide wants more pokemons"]
+					],
+					"action": ["moveToMap", "Route 2"],
+					"set": "to get pass the buggy assert",
+					"unset": "Oak's Aide wants more pokemons"
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["isSet", "Remember to unset 'Oak's Aide wants more pokemons'"]
+					],
+					"action": ["moveToMap", "Route 2"],
+					"set": "to get pass the buggy assert",
+					"unset": "Remember to unset 'Oak's Aide wants more pokemons'",
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["any",
+							["hasItem", "Pokeball"],
+							["hasItem", "Great Ball"],
+							["hasItem", "Ultra Ball"]
+						],
+						["isSet", "Oak's Aide wants more pokemons"]
+					],
+					"action": ["moveToMap", "Digletts Cave"]
+				},
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["any",
+							["hasItem", "Pokeball"],
+							["hasItem", "Great Ball"],
+							["hasItem", "Ultra Ball"]
+						]
+					],
+					"action": ["moveToMap", "Route 2"]
+				},
+				{
+					"action": ["moveToMap", "Digletts Cave"]
+				}
+			]
+		},
+
+		{
+			"condition": ["all",
+				["map", "Route 2"],
+				["inRectangle", [29,31], [42,90]]
+			],
+			"actions": [
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!isSet", "Oak's Aide wants more pokemons"],
+						["!hasItem", "HM05 - Flash"],
+						["any",
+							["hasItem", "Pokeball"],
+							["hasItem", "Great Ball"],
+							["hasItem", "Ultra Ball"]
+						]
+					],
+					"action": ["moveToMap", "Route 2 Stop3"]
+				},
+				{
+					"action": ["moveToMap", "Digletts Cave Entrance 1"]
+				}
+			]
+		},
+
+		{
+			"condition": ["map", "Route 2 Stop3"],
+			"actions": [
+				{
+					"condition": ["all",
+						["isPokemon1Usable"],
+						["!hasItem", "HM05 - Flash"],
+						["!isSet", "Oak's Aide wants more pokemons"],
+						["any",
+							["hasItem", "Pokeball"],
+							["hasItem", "Great Ball"],
+							["hasItem", "Ultra Ball"]
+						]
+					],
+					"action": ["talkToNpc", "Oak's Aide"]
+				},
+				{
+					"action": ["moveToMap", "Route 2"]
+				}
+			]
 		}
 
 	],
@@ -1009,6 +1591,15 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 		{
 			"condition": ["isOpponentShiny"],
 			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"condition": ["all",
+				["isSet", "Oak's Aide wants more pokemons"],
+				["alreadyCaught", "=", false],
+				["isSet", "hasPokeballs"]
+			],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"],
+			"set": "Remember to unset 'Oak's Aide wants more pokemons'",
 		},
 		{
 			"condition": ["all",
@@ -1036,18 +1627,6 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 				["isPokemon2Usable"]
 			],
 			"action": ["sendNextPokemon"],
-			"set": "hasNidoranM"
-		},
-		{
-			"condition": ["all",
-				["any",
-					["activePokemon", "Nidoran M"],
-					["activePokemon", "Nidorino"],
-					["activePokemon", "Nidoking"]
-				],
-				["!isSet", "hasNidoranM"]
-			],
-			"action": ["attack"],
 			"set": "hasNidoranM"
 		},
 		{
@@ -1096,6 +1675,22 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 			"set": "First pokemon ready for Misty"
 		},
 		{
+			"condition": ["all",
+				["activeLevel", ">=", 43],
+				["!isSet", "First pokemon ready for Surge"]
+			],
+			"action": ["attack"],
+			"set": "First pokemon ready for Surge"
+		},
+		{
+			"condition": ["all",
+				["activeLevel", ">=", 65],
+				["!isSet", "First pokemon does not need digglet cave"]
+			],
+			"action": ["attack"],
+			"set": "First pokemon does not need digglet cave"
+		},
+		{
 			"action": ["attack"]
 		}
 	],
@@ -1135,6 +1730,7 @@ Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491",
 			["SSAnne Talked to Blissey", "Blissey wants to give something"],
 			["SSAnne Security Officer Chris", "You should already know this area is off-limits!"],
 			["SSAnne Captain", "I owe ye one..."],
-			["SSAnne Jackson defeated", "Consider us off of the SS Anne now... With a goody-two-shoes scrub as my rommate, and the overall-pathetic pool of trainers, this ride will be a waste of time."]
+			["SSAnne Jackson defeated", "Consider us off of the SS Anne now... With a goody-two-shoes scrub as my rommate, and the overall-pathetic pool of trainers, this ride will be a waste of time."],
+			["Oak's Aide wants more pokemons", "Come back when you have; Professor Oak forwarded an item for me to give you when you do."]
 	]
 }
