@@ -1,0 +1,85 @@
+{
+	"name": "Leveling: Route 25 (near Cerulean)",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["all",
+				["isPokemon1Usable"],
+				["any",
+					["hasItem", "Pokeball"],
+					["hasItem", "Great Ball"],
+					["hasItem", "Ultra Ball"]
+				]
+			],
+			"actions": [
+				{
+					"condition": ["map", "Cerulean Pokemart"],
+					"action": ["moveToMap", "Cerulean City"]
+				},
+				{
+					"condition": ["map", "Pokecenter Cerulean"],
+					"action": ["moveToMap", "Cerulean City"]
+				},
+				{
+					"condition": ["map", "Cerulean City"],
+					"action": ["moveToCell", [39,0]]
+				},
+				{
+					"condition": ["all",
+						["map", "Route 24"],
+						["inRectangle", [14, 1], [15, 30]]
+					],
+					"action": ["moveToMap", "Route 25"]
+				},
+				{
+					"condition": ["map", "Route 25"],
+					"action": ["moveToGrass"]
+				}
+			]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["map", "Route 25"],
+					"action": ["moveToCell", [14, 30]]
+				},
+				{
+					"condition": ["all",
+						["map", "Route 24"],
+						["inRectangle", [14, 1], [15, 30]]
+					],
+					"action": ["moveToMap", "Cerulean City"]
+				},
+				{
+					"condition": ["map", "Cerulean City"],
+					"actions": [
+						{
+							"condition": ["all",
+								["!hasItem", "Pokeball"],
+								["!hasItem", "Great Ball"],
+								["!hasItem", "Ultra Ball"]
+							],
+							"action": ["moveToMap", "Cerulean Pokemart"]
+						},
+						{
+							"action": ["moveToMap", "Pokecenter Cerulean"]
+						}
+					]
+				},
+				{
+					"condition": ["map", "Pokecenter Cerulean"],
+					"action": ["usePokecenter"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["any",
+				["isOpponentShiny"],
+				["opponentPokemon", "abra"]
+			],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		}
+	]
+}
