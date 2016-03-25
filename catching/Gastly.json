@@ -1,0 +1,81 @@
+{
+	"name": "Catching: Gastly - Pokemon Tower (Lavender)",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["all",
+				["isPokemon1Usable"],
+				["any",
+					["hasItem", "Pokeball"],
+					["hasItem", "Great Ball"],
+					["hasItem", "Ultra Ball"]
+				]
+			],
+			"actions": [
+				{
+					"condition": ["map", "Pokecenter Lavender"],
+					"action": ["moveToMap", "Lavender Town"],
+				},
+				{
+					"condition": ["map", "Lavender Town"],
+					"action": ["moveToMap", "Pokemon Tower 1F"]
+				},
+				{
+					"condition": ["map", "Pokemon Tower 1F"],
+					"action": ["moveToMap", "Pokemon Tower 2F"]
+				},
+				{
+					"condition": ["map", "Pokemon Tower 2F"],
+					"action": ["moveToRectangle", [14,8], [16,13]]
+				}
+			]
+		},
+		{
+			"condition": ["all",
+				["map", "Lavender Pokemart"],
+				["any",
+					["hasItem", "Pokeball"],
+					["hasItem", "Great Ball"],
+					["hasItem", "Ultra Ball"]
+				]
+			],
+			"action": ["moveToMap", "Lavender Town"]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["map", "Pokemon Tower 2F"],
+					"action": ["moveToMap", "Pokemon Tower 1F"]
+				},
+				{
+					"condition": ["map", "Pokemon Tower 1F"],
+					"action": ["moveToMap", "Lavender Town"]
+				},
+				{
+					"condition": ["all",
+						["map", "Lavender Town"],
+						["isPokemon1Usable"]
+					],
+					"action": ["moveToMap", "Lavender Pokemart"]
+				},
+				{
+					"condition": ["map", "Lavender Town"],
+					"action": ["moveToMap", "Pokecenter Lavender"]
+				},
+				{
+					"condition": ["map", "Pokecenter Lavender"],
+					"action": ["usePokecenter"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["any",
+				["isOpponentShiny"],
+				["opponentPokemon", "Gastly"]
+			],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		}
+	]
+}
