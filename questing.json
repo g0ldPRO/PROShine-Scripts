@@ -38,7 +38,6 @@ Behaviour of the script:
 - Go from Lavender to Celadon
 - [The End, currently waiting for a new version of the bot]
 Bugs:
-- Expect bugs after the Cascade Badge
 - When leveling in route 24 the bot can end up in an infinity loop trying to run away constantly: log out
 Report bugs to: https://proshine-bot.ml/viewtopic.php?pid=491
 Contributors: c0pper",
