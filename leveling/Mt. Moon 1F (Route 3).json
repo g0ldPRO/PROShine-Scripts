@@ -1,0 +1,77 @@
+{
+	"name": "Leveling: Mt. Moon (near Route 3)",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["all",
+				["isPokemon1Usable"],
+				["any",
+					["teamSize", "=", 1],
+					["isPokemon2Usable"]
+				]
+			],
+			"actions": [
+				{
+					"condition": ["map", "Pokecenter Route 3"],
+					"action": ["moveToMap", "Route 3"]
+				},
+				{
+					"condition": ["map", "Route 3"],
+					"action": ["moveToMap", "Mt. Moon 1F"]
+				},
+				{
+					"condition": ["map", "Mt. Moon 1F"],
+					"action": ["moveToRectangle", [34,18], [40,21]]
+				},
+				{
+					"condition": ["map", "Mt. Moon B1F"],
+					"action": ["moveToCell", [75, 15]]
+				},
+				{
+					"condition": ["map", "Mt. Moon B2F"],
+					"action": ["moveToCell", [38, 40]]
+				}
+			]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["map", "Mt. Moon B2F"],
+					"action": ["moveToCell", [38, 40]]
+				},
+				{
+					"condition": ["map", "Mt. Moon B1F"],
+					"action": ["moveToCell", [75, 15]]
+				},
+				{
+					"condition": ["map", "Mt. Moon 1F"],
+					"action": ["moveToMap", "Route 3"]
+				},
+				{
+					"condition": ["map", "Route 3"],
+					"action": ["moveToMap", "Pokecenter Route 3"]
+				},
+				{
+					"condition": ["map", "Pokecenter Route 3"],
+					"action": ["usePokecenter"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["isOpponentShiny"],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"condition": ["all",
+				["activeLevel", "<=", 12],
+				["isPokemon2Usable"]
+			],
+			"action": ["sendNextPokemon"],
+		},
+		{
+			"action": ["attack"]
+		}
+	]
+}
