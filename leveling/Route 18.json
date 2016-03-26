@@ -1,0 +1,61 @@
+{
+	"name": "Leveling: Route 18 (near Fuchsia)",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["all",
+				["isPokemon1Usable"],
+				["any",
+					["teamSize", "=", 1],
+					["isPokemon2Usable"]
+				]
+			],
+			"actions": [
+				{
+					"condition": ["map", "Pokecenter Fuchsia"],
+					"action": ["moveToMap", "Fuchsia City"]
+				},
+				{
+					"condition": ["map", "Fuchsia City"],
+					"action": ["moveToMap", "Route 18"]
+				},
+				{
+					"condition": ["map", "Route 18"],
+					"action": ["moveToRectangle", [31, 19], [35, 20]]
+				}
+			]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["map", "Route 18"],
+					"action": ["moveToMap", "Fuchsia City"]
+				},
+				{
+					"condition": ["map", "Fuchsia City"],
+					"action": ["moveToMap", "Pokecenter Fuchsia"]
+				},
+				{
+					"condition": ["map", "Pokecenter Fuchsia"],
+					"action": ["usePokecenter"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["isOpponentShiny"],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"condition": ["all",
+				["activeLevel", "<=", 22],
+				["isPokemon2Usable"]
+			],
+			"action": ["sendNextPokemon"],
+		},
+		{
+			"action": ["attack"]
+		}
+	]
+}
