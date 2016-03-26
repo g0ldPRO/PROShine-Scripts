@@ -1,14 +1,15 @@
 {
-	"name": "Questing v0.5.1a
-From Start to the end of Rock Tunnel
+	"name": "Questing v0.5.2
+From Start to the beginning of Celadon
 How to:
 - You should be able to start the script from anywhere between Start and SSAnne
 - When NidoranM is catched at route 22, login and put it in position #1
 - Buy as many pokeballs as you can at the same time so you don't miss any shiny
 - Use the moon stone on Nidorino when you get it at Mt.Moon (the bot will stop)
 - If you use another pokemon as #1 instead of Nidoran M/Nidorino/Nidoking after Viridian City, the bot will use it instead and ignore the moon stone stop
+- If the bot stops in a Pokemart, you need to buy pokeballs
 Behaviour of the script:
-- Picks Charmander
+- Pick Charmander
 - Catch NidoranM route 22
 - Wait for you to switch
 - [HUMAN ACTION]
@@ -31,7 +32,7 @@ Behaviour of the script:
 - Fight Jackso
 - Talk to all NPCs required to reach the Captain
 - Get the HM01
-- Wait in front of the arena
+- Wait in front of the arena for you to defeat it
 - [HUMAN ACTION]
 - Go look for the HM05 and catch pokemons if needed
 - Go back to Cerulean and take the Rock Tunnel
@@ -755,7 +756,7 @@ Contributors: c0pper",
 		{
 			"condition": ["all",
 				["map", "Route 10"],
-				["inRectangle", [10,3], [20,8]]
+				["inRectangle", [10,1], [22,8]]
 			],
 			"actions": [
 				{
@@ -786,6 +787,9 @@ Contributors: c0pper",
 			"condition": ["all",
 				["map", "Rock Tunnel 2"],
 				["any",
+					["inRectangle", [6, 5], [26, 11]],
+					["inRectangle", [27, 5], [45, 6]],
+					["inRectangle", [36, 7], [45, 17]],
 					["inRectangle", [36, 9], [37, 17]],
 					["inRectangle", [38, 8], [45, 10]],
 					["inRectangle", [37, 5], [45,  7]],
@@ -816,7 +820,7 @@ Contributors: c0pper",
 					["inRectangle", [17, 8], [20, 8]],
 					["inRectangle", [20, 8], [23, 9]],
 					["inRectangle", [23, 9], [23, 13]],
-					["inRectangle", [6, 13], [23, 13]],
+					["inRectangle", [6, 13], [23, 14]],
 					["inRectangle", [6, 13], [9, 16]]
 				]
 			],
@@ -826,6 +830,7 @@ Contributors: c0pper",
 			"condition": ["all",
 				["map", "Rock Tunnel 2"],
 				["any",
+					["inRectangle", [6, 17], [26, 27]],
 					["inRectangle", [9, 13], [26, 21]],
 					["inRectangle", [12, 21], [26, 22]],
 					["inRectangle", [9, 22], [12, 22]],
@@ -845,7 +850,7 @@ Contributors: c0pper",
 					["inRectangle", [8, 27], [22, 32]]
 				]
 			],
-			"action": ["moveToCell", [21, 32]]
+			"action": ["moveToMap", "Route 10"]
 		},
 		{
 			"condition": ["all",
