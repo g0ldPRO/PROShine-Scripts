@@ -756,7 +756,7 @@ Contributors: c0pper",
 		{
 			"condition": ["all",
 				["map", "Route 10"],
-				["inRectangle", [10,1], [22,8]]
+				["inRectangle", [10,0], [22,8]]
 			],
 			"actions": [
 				{
@@ -1654,35 +1654,11 @@ Contributors: c0pper",
 		},
 		{
 			"condition": ["all",
-				["activeLevel", ">=", 16],
-				["!isSet", "First pokemon ready for Brock"]
+				["activeLevel", ">=", 65],
+				["!isSet", "First pokemon does not need digglet cave"]
 			],
 			"action": ["attack"],
-			"set": "First pokemon ready for Brock"
-		},
-		{
-			"condition": ["all",
-				["activeLevel", ">=", 21],
-				["!isSet", "First pokemon ready for Moon Stone"]
-			],
-			"action": ["attack"],
-			"set": "First pokemon ready for Moon Stone"
-		},
-		{
-			"condition": ["all",
-				["activeLevel", ">=", 28],
-				["!isSet", "First pokemon ready for Mt.Moon"]
-			],
-			"action": ["attack"],
-			"set": "First pokemon ready for Mt.Moon"
-		},
-		{
-			"condition": ["all",
-				["activeLevel", ">=", 38],
-				["!isSet", "First pokemon ready for Misty"]
-			],
-			"action": ["attack"],
-			"set": "First pokemon ready for Misty"
+			"set": "First pokemon does not need digglet cave"
 		},
 		{
 			"condition": ["all",
@@ -1694,11 +1670,35 @@ Contributors: c0pper",
 		},
 		{
 			"condition": ["all",
-				["activeLevel", ">=", 65],
-				["!isSet", "First pokemon does not need digglet cave"]
+				["activeLevel", ">=", 38],
+				["!isSet", "First pokemon ready for Misty"]
 			],
 			"action": ["attack"],
-			"set": "First pokemon does not need digglet cave"
+			"set": "First pokemon ready for Misty"
+		},
+		{
+			"condition": ["all",
+				["activeLevel", ">=", 28],
+				["!isSet", "First pokemon ready for Mt.Moon"]
+			],
+			"action": ["attack"],
+			"set": "First pokemon ready for Mt.Moon"
+		},
+		{
+			"condition": ["all",
+				["activeLevel", ">=", 21],
+				["!isSet", "First pokemon ready for Moon Stone"]
+			],
+			"action": ["attack"],
+			"set": "First pokemon ready for Moon Stone"
+		},
+		{
+			"condition": ["all",
+				["activeLevel", ">=", 16],
+				["!isSet", "First pokemon ready for Brock"]
+			],
+			"action": ["attack"],
+			"set": "First pokemon ready for Brock"
 		},
 		{
 			"action": ["attack"]
