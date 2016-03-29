@@ -1,0 +1,73 @@
+{
+	"name": "Catching: Slowpoke - Route 6 (Vermilion) [need surf]",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["all",
+				["isPokemon1Usable"],
+				["any",
+					["hasItem", "Pokeball"],
+					["hasItem", "Great Ball"],
+					["hasItem", "Ultra Ball"]
+				]
+			],
+			"actions": [
+				{
+					"condition": ["map", "Pokecenter Vermilion"],
+					"action": ["moveToMap", "Vermilion City"]
+				},
+				{
+					"condition": ["map", "Vermilion City"],
+					"action": ["moveToMap", "Route 6"]
+				},
+				{
+					"condition": ["map", "Route 6"],
+					"action": ["moveToRectangle", [15,35], [30,41]]
+				}
+			]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["map", "Route 6"],
+					"action": ["moveToMap", "Vermilion City"]
+				},
+				{
+					"condition": ["all",
+						["map", "Vermilion City"],
+						["isPokemon1Usable"]
+					],
+					"action": ["moveToMap", "Vermilion Pokemart"]
+				},
+				{
+					"condition": ["map", "Vermilion City"],
+					"action": ["moveToMap", "Pokecenter Vermilion"]
+				},
+				{
+					"condition": ["map", "Pokecenter Vermilion"],
+					"action": ["usePokecenter"]
+				},
+				{
+					"condition": ["all",
+						["map", "Vermilion Pokemart"],
+						["any",
+							["hasItem", "Pokeball"],
+							["hasItem", "Great Ball"],
+							["hasItem", "Ultra Ball"]
+						]
+					],
+					"action": ["moveToMap", "Vermilion City"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["any",
+				["isOpponentShiny"],
+				["opponentPokemon", "Slowpoke"]
+			],
+			"action": ["useItem", "Pokeball", "Great Ball", "Ultra Ball"]
+		}
+	]
+}
