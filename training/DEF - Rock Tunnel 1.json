@@ -1,0 +1,74 @@
+{
+	"name": "Training: DEF: Route 6 Water (Vermilion)",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["all",
+				["isPokemon1Usable"],
+				["any",
+					["teamSize", "=", 1],
+					["isPokemon2Usable"]
+				]
+			],
+			"actions": [
+				{
+					"condition": ["map", "Pokecenter Route 10"],
+					"action": ["moveToMap", "Route 10"]
+				},
+				{
+					"condition": ["map", "Route 10"],
+					"action": ["moveToMap", "Rock Tunnel 1"]
+				},
+				{
+					"condition": ["map", "Rock Tunnel 1"],
+					"action": ["moveToRectangle", [39,8], [45,10]]
+				}
+			]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["map", "Rock Tunnel 1"],
+					"action": ["moveToMap", "Route 10"]
+				},
+				{
+					"condition": ["map", "Route 10"],
+					"action": ["moveToMap", "Pokecenter Route 10"]
+				},
+				{
+					"condition": ["map", "Pokecenter Route 10"],
+					"action": ["usePokecenter"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["isOpponentShiny"],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"condition": ["all",
+				["any",
+					["opponentPokemon", "Cubone"],
+					["opponentPokemon", "Geodude"],
+					["opponentPokemon", "Graveler"]
+				],
+				["isPokemon1Usable"]
+			],
+			"actions": [
+				{
+					"condition": ["all",
+						["activeLevel", "<=", 23],
+						["isPokemon2Usable"]
+					],
+					"action": ["sendNextPokemon"],
+				},
+				{
+					"action": ["attack"]
+				}
+			]
+		}
+	]
+}
+	DEF - Rock Tunnel 1.json
