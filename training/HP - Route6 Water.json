@@ -1,0 +1,69 @@
+{
+	"name": "Training: HP: Route 6 Water (Vermilion)",
+	"author": "g0ld",
+	"path": [
+		{
+			"condition": ["all",
+				["isPokemon1Usable"],
+				["any",
+					["teamSize", "=", 1],
+					["isPokemon2Usable"]
+				]
+			],
+			"actions": [
+				{
+					"condition": ["map", "Pokecenter Vermilion"],
+					"action": ["moveToMap", "Vermilion City"]
+				},
+				{
+					"condition": ["map", "Vermilion City"],
+					"action": ["moveToMap", "Route 6"]
+				},
+				{
+					"condition": ["map", "Route 6"],
+					"action": ["moveToRectangle", [15,35], [30,41]]
+				}
+			]
+		},
+		{
+			"actions": [
+				{
+					"condition": ["map", "Route 6"],
+					"action": ["moveToMap", "Vermilion City"]
+				},
+				{
+					"condition": ["map", "Vermilion City"],
+					"action": ["moveToMap", "Pokecenter Vermilion"]
+				},
+				{
+					"condition": ["map", "Pokecenter Vermilion"],
+					"action": ["usePokecenter"]
+				}
+			]
+		}
+	],
+	"battle": [
+		{
+			"condition": ["isOpponentShiny"],
+			"action": ["useItem", "Ultra Ball", "Great Ball", "Pokeball"]
+		},
+		{
+			"condition": ["all",
+				["opponentPokemon", "Slowpoke"],
+				["isPokemon1Usable"]
+			],
+			"actions": [
+				{
+					"condition": ["all",
+						["activeLevel", "<=", 17],
+						["isPokemon2Usable"]
+					],
+					"action": ["sendNextPokemon"],
+				},
+				{
+					"action": ["attack"]
+				}
+			]
+		}
+	]
+}
