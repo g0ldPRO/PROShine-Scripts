@@ -683,7 +683,7 @@ Contributors: c0pper",
 						["!isSet", "First pokemon ready for Misty"],
 						["isPokemon1Usable"]
 					],
-					"action": ["moveToRectangle", [7,2], [9, 2]]
+					"action": ["moveToRectangle", [6,2], [9, 16]]
 				},
 				{
 					"action": ["moveToMap", "Route 25"]
